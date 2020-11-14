@@ -1528,6 +1528,7 @@ public enum ClientPacketIds : short
     StartGame,
     RequestMapInformation,
     MapLoaded,
+    MapChanged,
     LogOut,
     Turn,
     Walk,
@@ -4558,6 +4559,8 @@ public abstract class Packet
                 return new C.RequestMapInformation();
             case (short)ClientPacketIds.MapLoaded:
                 return new C.MapLoaded();
+            case (short)ClientPacketIds.MapChanged:
+                return new C.MapChanged();
             case (short)ClientPacketIds.LogOut:
                 return new C.LogOut();
             case (short)ClientPacketIds.Turn:

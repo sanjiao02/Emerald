@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using Network = EmeraldNetwork.Network;
+using C = ClientPackets;
 using S = ServerPackets;
 
 public class QueuedAction
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
     private static MirDirection MouseDirection;
     private static float MouseDistance;
 
-    private GameObject UserGameObject;
+    public static GameObject UserGameObject;
     private Dictionary<uint, MapObject> ObjectList = new Dictionary<uint, MapObject>();
     [HideInInspector]
     public static List<ItemInfo> ItemInfoList = new List<ItemInfo>();
@@ -42,7 +43,6 @@ public class GameManager : MonoBehaviour
     public static GameSceneManager GameScene;
     [HideInInspector]
     public static UserObject User;    
-    [HideInInspector]
     public static MirScene CurrentScene;
     [HideInInspector]
     public static float NextAction;
@@ -123,7 +123,6 @@ public class GameManager : MonoBehaviour
 
         User.BindAllItems();
 
-        ObjectList.Add(p.ObjectID, User.Player);
         User.Player.Camera.SetActive(true);
         User.Player.MiniMapCamera.SetActive(true);
 
@@ -156,15 +155,24 @@ public class GameManager : MonoBehaviour
 
     public void MapChanged(S.MapChanged p)
     {
-        if (p.FileName != CurrentScene.FileName)
-        {
-            CurrentScene.LoadMap(p.FileName);
-        }
-
+        foreach (var ob in ObjectList.ToArray())
+            Destroy(ob.Value.gameObject);
+        ObjectList.Clear();
+        
         ClearAction();
+        User.Player.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
 
-        User.Player.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);        
-        UserGameObject.transform.position = CurrentScene.Cells[(int)User.Player.CurrentLocation.x, (int)User.Player.CurrentLocation.y].position;
+        if (p.SceneName != CurrentScene.gameObject.scene.name)
+        {
+            FindObjectOfType<LoadScreenManager>().ChangeScene(p.SceneName, p.FileName, CurrentScene.gameObject.scene);
+        }
+        else
+        {
+            if (p.FileName != CurrentScene.FileName)
+                CurrentScene.LoadMap(p.FileName);
+            Network.Enqueue(new C.MapChanged { });
+            UserGameObject.transform.position = CurrentScene.Cells[(int)User.Player.CurrentLocation.x, (int)User.Player.CurrentLocation.y].position;
+        }                          
     }
 
     public void BaseStatsInfo(S.BaseStatsInfo p)

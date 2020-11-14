@@ -265,6 +265,9 @@ namespace Server.MirNetwork
                 case (short)ClientPacketIds.MapLoaded:
                     MapLoaded((C.MapLoaded)p);
                     break;
+                case (short)ClientPacketIds.MapChanged:
+                    MapChanged((C.MapChanged)p);
+                    break;
                 case (short)ClientPacketIds.LogOut:
                     LogOut();
                     break;
@@ -883,6 +886,12 @@ namespace Server.MirNetwork
         {
             if (Stage == GameStage.Game)
                 Player.StartGameSuccess();
+        }
+
+        private void MapChanged(C.MapChanged p)
+        {
+            if (Stage == GameStage.Game)
+                Player.CompleteMapMovement();
         }
 
         public void LogOut()

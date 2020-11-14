@@ -240,6 +240,20 @@ namespace ClientPackets
         {
         }
     }
+    public sealed class MapChanged : Packet
+    {
+        public override short Index
+        {
+            get { return (short)ClientPacketIds.MapChanged; }
+        }
+
+        protected override void ReadPacket(BinaryReader reader)
+        {
+        }
+        protected override void WritePacket(BinaryWriter writer)
+        {
+        }
+    }
     public sealed class LogOut : Packet
     {
         public override short Index { get { return (short)ClientPacketIds.LogOut; } }

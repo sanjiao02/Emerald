@@ -1169,7 +1169,7 @@ namespace Server.MirObjects
                     CompleteAttack(action.Params);
                     break;
                 case DelayedType.MapMovement:
-                    CompleteMapMovement(action.Params);
+                    BeginMapMovement(action.Params);
                     break;
                 case DelayedType.Mine:
                     CompleteMine(action.Params);
@@ -9745,13 +9745,13 @@ namespace Server.MirObjects
                 CurrentMap.RemoveObject(this);
                 Broadcast(new S.ObjectRemove { ObjectID = ObjectID });
 
-                CompleteMapMovement(temp, info.Destination, CurrentMap, CurrentLocation);
+                BeginMapMovement(temp, info.Destination, CurrentMap, CurrentLocation);
                 return true;
             }
 
             return false;
         }
-        private void CompleteMapMovement(params object[] data)
+        private void BeginMapMovement(params object[] data)
         {
             if (this == null) return;
             Map temp = (Map)data[0];
@@ -9766,10 +9766,6 @@ namespace Server.MirObjects
             CurrentMap = temp;
             CurrentLocation = destination;
 
-            CurrentMap.AddObject(this);
-
-            MovementTime = Envir.Time + MovementDelay;
-
             Enqueue(new S.MapChanged
             {
                 FileName = CurrentMap.Info.FileName,
@@ -9783,6 +9779,18 @@ namespace Server.MirObjects
                 MapDarkLight = CurrentMap.Info.MapDarkLight,
                 Music = CurrentMap.Info.Music
             });
+
+            /*if (mapChanged)
+            {
+                CallDefaultNPC(DefaultNPCType.MapEnter, CurrentMap.Info.FileName);
+            }*/
+        }
+
+        public void CompleteMapMovement()
+        {
+            CurrentMap.AddObject(this);
+
+            MovementTime = Envir.Time + MovementDelay;
 
             if (RidingMount) RefreshMount();
 
@@ -9797,12 +9805,7 @@ namespace Server.MirObjects
                 InSafeZone = true;
             }
             else
-                InSafeZone = false;
-
-            if (mapChanged)
-            {
-                CallDefaultNPC(DefaultNPCType.MapEnter, CurrentMap.Info.FileName);
-            }
+                InSafeZone = false;            
 
             if (Info.Married != 0)
             {
@@ -9817,12 +9820,21 @@ namespace Server.MirObjects
 
         public override bool Teleport(Map temp, Point location, bool effects = true, byte effectnumber = 0)
         {
+            if (temp == null || !temp.ValidPoint(location)) return false;
+
             Map oldMap = CurrentMap;
             Point oldLocation = CurrentLocation;
 
             bool mapChanged = temp != oldMap;
 
-            if (!base.Teleport(temp, location, effects)) return false;
+            CurrentMap.RemoveObject(this);
+            if (effects) Broadcast(new S.ObjectTeleportOut { ObjectID = ObjectID, Type = effectnumber });
+            Broadcast(new S.ObjectRemove { ObjectID = ObjectID });
+
+            CurrentMap = temp;
+            CurrentLocation = location;
+
+            InTrapRock = false;
 
             Enqueue(new S.MapChanged
             {
@@ -9838,7 +9850,7 @@ namespace Server.MirObjects
                 Music = CurrentMap.Info.Music
             });
 
-            if (effects) Enqueue(new S.ObjectTeleportIn { ObjectID = ObjectID, Type = effectnumber });
+            /*if (effects) Enqueue(new S.ObjectTeleportIn { ObjectID = ObjectID, Type = effectnumber });
 
             //Cancel actions
             if (TradePartner != null)
@@ -9887,7 +9899,7 @@ namespace Server.MirObjects
                 Stacking = true;
             }
 
-            Report.MapChange("Teleported", oldMap.Info, CurrentMap.Info);
+            Report.MapChange("Teleported", oldMap.Info, CurrentMap.Info);*/
 
             return true;
         }

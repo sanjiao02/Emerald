@@ -266,6 +266,8 @@ public class GameSceneManager : MonoBehaviour
 
     private MapObject GetMouseObject()
     {
+        if (Camera.main == null) return null;
+
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, TargettableLayerMask))
@@ -509,6 +511,4 @@ public class GameSceneManager : MonoBehaviour
         DamagePopup popup = Instantiate(DamagePopup, location, Quaternion.identity).GetComponent<DamagePopup>();
         popup.SetDamage(damage);
     }
-
-
 }
