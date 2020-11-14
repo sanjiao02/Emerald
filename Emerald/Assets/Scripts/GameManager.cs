@@ -440,11 +440,7 @@ public class GameManager : MonoBehaviour
 
     public void ObjectChat(S.ObjectChat p)
     {
-        if (ObjectList.TryGetValue(p.ObjectID, out MapObject ob))
-        {
-            //player.ActionFeed.Add(new QueuedAction { Action = MirAction.Running, Direction = p.Direction, Location = new Vector2(p.Location.X, p.Location.Y) });
-            GameScene.ChatController.ReceiveChat(p.Text, p.Type);
-        }
+        GameScene.ChatController.ReceiveChat(p.Text, p.Type);
     }
 
     public void NewItemInfo(S.NewItemInfo info)
