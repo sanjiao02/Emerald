@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Unreal_Assets/10. Maps/MirPb03/MirPb03.unity
     guid: 6295f1d206c7c7f43a359bde4ac0c968
+  - enabled: 1
+    path: Assets/_Unreal_Assets/10. Maps/Dg/MirDg03/MirDg03.unity
+    guid: c889d2f96d7f3e84f808a39609ce8073
   m_configObjects: {}
