@@ -4731,7 +4731,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -7318,7 +7318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7252053447303725513, guid: 36654a0cde37af14a975d1cecd5870a6,
+  m_Sprite: {fileID: 7719635194250049517, guid: 36654a0cde37af14a975d1cecd5870a6,
     type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -11333,7 +11333,7 @@ GameObject:
   - component: {fileID: 520673787}
   - component: {fileID: 520673789}
   m_Layer: 5
-  m_Name: Fight Zone
+  m_Name: War Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11421,7 +11421,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Fight Zone
+            m_StringArgument: War Zone
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
@@ -14802,7 +14802,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3304962702994687767, guid: 36654a0cde37af14a975d1cecd5870a6,
+  m_Sprite: {fileID: -7252053447303725513, guid: 36654a0cde37af14a975d1cecd5870a6,
     type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -24933,7 +24933,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FPSText: {fileID: 2061861572}
   TimeText: {fileID: 657274295}
-  updateInterval: 1
 --- !u!1 &1400689965
 GameObject:
   m_ObjectHideFlags: 0
@@ -25421,7 +25420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -347}
+  m_AnchoredPosition: {x: 0, y: -373}
   m_SizeDelta: {x: 394, y: 42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1437649639
@@ -34122,7 +34121,7 @@ GameObject:
   - component: {fileID: 2064606403}
   - component: {fileID: 2064606405}
   m_Layer: 5
-  m_Name: War Zone
+  m_Name: Fight Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34210,7 +34209,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: War Zone
+            m_StringArgument: Fight Zone
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
