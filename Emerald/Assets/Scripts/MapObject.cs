@@ -81,7 +81,7 @@ public class MapObject : MonoBehaviour
 
             scale = value;
             float s = value / 100f;
-            Model.transform.localScale = new Vector3(s, s, s);
+            Model.transform.localScale *= s;
         }
     }
 
