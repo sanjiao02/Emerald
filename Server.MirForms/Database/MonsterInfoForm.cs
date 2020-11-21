@@ -66,6 +66,7 @@ namespace Server
                 AITextBox.Text = string.Empty;
                 EffectTextBox.Text = string.Empty;
                 LevelTextBox.Text = string.Empty;
+                ScaleTextBox.Text = string.Empty;
                 ViewRangeTextBox.Text = string.Empty;
                 CoolEyeTextBox.Text = string.Empty;
 
@@ -110,6 +111,7 @@ namespace Server
             AITextBox.Text = info.AI.ToString();
             EffectTextBox.Text = info.Effect.ToString();
             LevelTextBox.Text = info.Level.ToString();
+            ScaleTextBox.Text = info.Scale.ToString();
             ViewRangeTextBox.Text = info.ViewRange.ToString();
             CoolEyeTextBox.Text = info.CoolEye.ToString();
 
@@ -151,6 +153,7 @@ namespace Server
                 if (AITextBox.Text != info.AI.ToString()) AITextBox.Text = string.Empty;
                 if (EffectTextBox.Text != info.Effect.ToString()) EffectTextBox.Text = string.Empty;
                 if (LevelTextBox.Text != info.Level.ToString()) LevelTextBox.Text = string.Empty;
+                if (ScaleTextBox.Text != info.Scale.ToString()) ScaleTextBox.Text = string.Empty;
                 if (ViewRangeTextBox.Text != info.ViewRange.ToString()) ViewRangeTextBox.Text = string.Empty;
                 if (CoolEyeTextBox.Text != info.CoolEye.ToString()) CoolEyeTextBox.Text = string.Empty;
                 if (HPTextBox.Text != info.HP.ToString()) HPTextBox.Text = string.Empty;
@@ -242,7 +245,6 @@ namespace Server
         }
         private void LevelTextBox_TextChanged(object sender, EventArgs e)
         {
-
             if (ActiveControl != sender) return;
 
             ushort temp;
@@ -704,6 +706,24 @@ namespace Server
             MirForms.DropBuilder.DropGenForm GenForm = new MirForms.DropBuilder.DropGenForm();
 
             GenForm.ShowDialog();
+        }
+
+        private void ScaleTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (ActiveControl != sender) return;
+
+            byte temp;
+
+            if (!byte.TryParse(ActiveControl.Text, out temp))
+            {
+                ActiveControl.BackColor = Color.Red;
+                return;
+            }
+            ActiveControl.BackColor = SystemColors.Window;
+
+
+            for (int i = 0; i < _selectedMonsterInfos.Count; i++)
+                _selectedMonsterInfos[i].Scale = temp;
         }
     }
 }

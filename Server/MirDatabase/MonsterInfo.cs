@@ -31,6 +31,7 @@ namespace Server.MirDatabase
         public Monster Image;
         public byte AI, Effect, ViewRange = 7, CoolEye;
         public ushort Level;
+        public byte Scale;
 
         public uint HP;
         public byte Accuracy, Agility, Light;
@@ -65,6 +66,11 @@ namespace Server.MirDatabase
             {
                 Level = reader.ReadUInt16();
             }
+
+            if (Envir.LoadVersion > 80)
+                Scale = reader.ReadByte();
+            else
+                Scale = 100;
 
             ViewRange = reader.ReadByte();
             if (Envir.LoadVersion >= 3) CoolEye = reader.ReadByte();
@@ -136,6 +142,7 @@ namespace Server.MirDatabase
             writer.Write(AI);
             writer.Write(Effect);
             writer.Write(Level);
+            writer.Write(Scale);
             writer.Write(ViewRange);
             writer.Write(CoolEye);
 

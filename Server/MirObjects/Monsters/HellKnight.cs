@@ -44,6 +44,7 @@ namespace Server.MirObjects.Monsters
                 Direction = Direction,
                 Effect = Info.Effect,
                 AI = Info.AI,
+                Scale = Info.Scale,
                 Light = Info.Light,
                 Dead = Dead,
                 Skeleton = Harvested,

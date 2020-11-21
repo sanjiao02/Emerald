@@ -71,6 +71,20 @@ public class MapObject : MonoBehaviour
     [HideInInspector]
     public int ActionType;
 
+    private byte scale;
+    public byte Scale
+    {
+        get { return scale; }
+        set
+        {
+            if (scale == value) return;
+
+            scale = value;
+            float s = value / 100f;
+            Model.transform.localScale = new Vector3(s, s, s);
+        }
+    }
+
     public virtual void Start()
     {
         CurrentAction = MirAction.Standing;        

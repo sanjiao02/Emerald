@@ -1933,7 +1933,7 @@ namespace ServerPackets
         public Point Location;
         public Monster Image;
         public MirDirection Direction;
-        public byte Effect, AI, Light;
+        public byte Effect, AI, Light, Scale;
         public bool Dead, Skeleton;
         public PoisonType Poison;
         public bool Hidden, Extra;
@@ -1951,6 +1951,7 @@ namespace ServerPackets
             Direction = (MirDirection)reader.ReadByte();
             Effect = reader.ReadByte();
             AI = reader.ReadByte();
+            Scale = reader.ReadByte();
             Light = reader.ReadByte();
             Dead = reader.ReadBoolean();
             Skeleton = reader.ReadBoolean();
@@ -1973,6 +1974,7 @@ namespace ServerPackets
             writer.Write((byte)Direction);
             writer.Write(Effect);
             writer.Write(AI);
+            writer.Write(Scale);
             writer.Write(Light);
             writer.Write(Dead);
             writer.Write(Skeleton);

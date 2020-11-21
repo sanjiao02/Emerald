@@ -1176,7 +1176,7 @@ MonoBehaviour:
   NameLocation: {fileID: 7256114048717889559}
   NameLabel: {fileID: 177940762220530538, guid: fb59f2525fca14345afceae9453fb40a,
     type: 3}
-  Model: {fileID: 2819253477807769992}
+  Model: {fileID: 5178970960594843008}
   MoveSpeed: 1.2
   OutlineWidth: 0.03
   Name: 

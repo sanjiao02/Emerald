@@ -291,6 +291,7 @@ public class GameManager : MonoBehaviour
             monster = Instantiate(MonsterModels[(int)p.Image], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity).GetComponent<MonsterObject>();
         monster.Name = p.Name;
         monster.ObjectID = p.ObjectID;
+        monster.Scale = p.Scale;
         monster.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
         monster.Direction = p.Direction;
         monster.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
