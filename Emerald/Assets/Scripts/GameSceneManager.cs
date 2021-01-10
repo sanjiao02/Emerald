@@ -50,12 +50,16 @@ public class GameSceneManager : MonoBehaviour
     public Image SelectedItemImage;
     public MirItemCell[] EquipmentCells = new MirItemCell[14];
     public MirItemCell[] BeltCells = new MirItemCell[6];
+    public NPCDialog NPCDialog;
 
     [HideInInspector]
     public bool PickedUpGold;
     [HideInInspector]
     public float UseItemTime;
     public float PickUpTime;
+
+    public uint NPCID;
+    public string NPCName;
 
     private MapObject targetObject;
     public MapObject TargetObject
@@ -117,7 +121,7 @@ public class GameSceneManager : MonoBehaviour
     void Awake()
     {
         GameManager.GameScene = this;
-        TargettableLayerMask = (1 << LayerMask.NameToLayer("Monster")) | (1 << LayerMask.NameToLayer("Item"));
+        TargettableLayerMask = (1 << LayerMask.NameToLayer("Monster")) | (1 << LayerMask.NameToLayer("Item")) | (1 << LayerMask.NameToLayer("NPC"));
     }
 
     void Start()
@@ -195,7 +199,7 @@ public class GameSceneManager : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0) && !eventSystem.IsPointerOverGameObject())
+        if (Input.GetMouseButton(0) && !eventSystem.IsPointerOverGameObject() && Time.time > GameManager.InputDelay)
         {
             GameManager.User.CanRun = false;
 
@@ -225,6 +229,14 @@ public class GameSceneManager : MonoBehaviour
                         MonsterObject monster = (MonsterObject)MouseObject;
                         if (monster.Dead) break;
                         TargetObject = monster;
+                        GameManager.InputDelay = Time.time + 0.5f;
+                        return;
+                    case 10: //NPC
+                        NPCObject npc = (NPCObject)MouseObject;
+                        NPCName = npc.Name;
+                        NPCID = npc.ObjectID;
+                        Network.Enqueue(new C.CallNPC { ObjectID = npc.ObjectID, Key = "[@Main]" });
+                        GameManager.InputDelay = Time.time + 0.5f;
                         return;
                 }
             }
@@ -276,8 +288,9 @@ public class GameSceneManager : MonoBehaviour
 
             switch (selection.gameObject.layer)
             {
-                case 9: //Monster
+                case 9: //Monster                
                     return selection.GetComponentInParent<MapObject>();
+                case 10: //NPC
                 case 13: //Item
                     return selection.GetComponent<MapObject>();
             }
@@ -455,6 +468,12 @@ public class GameSceneManager : MonoBehaviour
         //User.RefreshStats();
         //foreach (SkillBarDialog Bar in SkillBarDialogs)
         //    Bar.Update();
+    }
+
+    public void NPCResponse(S.NPCResponse p)
+    {
+        NPCDialog.gameObject.SetActive(true);
+        NPCDialog.NewText(NPCName, p.Page);
     }
 
     public void UpdateCharacterIcon()

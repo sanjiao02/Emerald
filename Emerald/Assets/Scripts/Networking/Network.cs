@@ -408,6 +408,9 @@ namespace EmeraldNetwork
                 case (short)ServerPacketIds.MapChanged:
                     MapChanged((S.MapChanged)p);
                     break;
+                case (short)ServerPacketIds.NPCResponse:
+                    NPCResponse((S.NPCResponse)p);
+                    break;
                 default:
                     //base.ProcessPacket(p);
                     break;
@@ -751,6 +754,10 @@ namespace EmeraldNetwork
         public static void MapChanged(S.MapChanged p)
         {
             gameManager.MapChanged(p);
+        }
+        public static void NPCResponse(S.NPCResponse p)
+        {
+            GameManager.GameScene.NPCResponse(p);
         }
 
         public static void Enqueue(Packet p)
