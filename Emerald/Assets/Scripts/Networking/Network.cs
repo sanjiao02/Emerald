@@ -354,6 +354,9 @@ namespace EmeraldNetwork
                 case (short)ServerPacketIds.ObjectAttack:
                     ObjectAttack((S.ObjectAttack)p);
                     break;
+                case (short)ServerPacketIds.Struck:
+                    Struck((S.Struck)p);
+                    break;
                 case (short)ServerPacketIds.ObjectStruck:
                     ObjectStruck((S.ObjectStruck)p);
                     break;
@@ -362,6 +365,9 @@ namespace EmeraldNetwork
                     break;
                 case (short)ServerPacketIds.DamageIndicator:
                     DamageIndicator((S.DamageIndicator)p);
+                    break;
+                case (short)ServerPacketIds.Death:
+                    Death((S.Death)p);
                     break;
                 case (short)ServerPacketIds.ObjectDied:
                     ObjectDied((S.ObjectDied)p);
@@ -670,6 +676,10 @@ namespace EmeraldNetwork
         {
             gameManager.ObjectAttack(p);
         }
+        public static void Struck(S.Struck p)
+        {
+            gameManager.Struck(p);
+        }
         public static void ObjectStruck(S.ObjectStruck p)
         {
             gameManager.ObjectStruck(p);
@@ -681,6 +691,10 @@ namespace EmeraldNetwork
         public static void DamageIndicator(S.DamageIndicator p)
         {
             gameManager.DamageIndicator(p);
+        }
+        public static void Death(S.Death p)
+        {
+            gameManager.Death(p);
         }
         public static void ObjectDied(S.ObjectDied p)
         {

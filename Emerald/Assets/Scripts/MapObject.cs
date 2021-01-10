@@ -94,7 +94,7 @@ public class MapObject : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (CurrentAction == MirAction.Standing)
+        if (CurrentAction == MirAction.Standing || CurrentAction == MirAction.Dead)
         {
             SetAction();
             return;
@@ -136,5 +136,10 @@ public class MapObject : MonoBehaviour
     {
         ObjectRenderer.materials[1].SetFloat("_ASEOutlineWidth", 0);
         ObjectRenderer.materials[1].SetColor("_ASEOutlineColor", Color.clear);
+    }
+
+    public void StruckEnd()
+    {
+        GetComponentInChildren<Animator>()?.SetBool("Struck", false);
     }
 }

@@ -11,4 +11,9 @@ public class PlayerAnimationController : MonoBehaviour
     {
         ParentObject?.SetAction();
     }
+
+    void StruckEnd()
+    {
+        ParentObject?.StruckEnd();
+    }
 }

@@ -80,9 +80,7 @@ public class GameManager : MonoBehaviour
 
     public void MapInformation(S.MapInformation p)
     {
-        foreach (var ob in ObjectList.ToArray())
-            Destroy(ob.Value.gameObject);
-        ObjectList.Clear();
+        ClearObjects();
 
         if (CurrentScene != null && CurrentScene.gameObject.scene.name == p.SceneName)
             CurrentScene.LoadMap(p.FileName);
@@ -125,7 +123,7 @@ public class GameManager : MonoBehaviour
 
         User.Player.Camera.SetActive(true);
         User.Player.MiniMapCamera.SetActive(true);
-
+        ObjectList.Add(p.ObjectID, User.Player);
         Tooltip.cam = User.Player.Camera.GetComponent<Camera>();
     }
 
@@ -146,19 +144,24 @@ public class GameManager : MonoBehaviour
         User.Equipment = new UserItem[14];
         UserGameObject = null;
 
-        foreach (var ob in ObjectList.ToArray())
-            Destroy(ob.Value.gameObject);
-        ObjectList.Clear();
+        ClearObjects();        
 
         CurrentScene = null;
     }
 
+    public void ClearObjects()
+    {
+        for (int i = ObjectList.Keys.Count - 1; i >= 0; i--)
+        {
+            if (ObjectList.ElementAt(i).Key == User.Player.ObjectID) continue;
+            Destroy(ObjectList.ElementAt(i).Value.gameObject);
+            ObjectList.Remove(ObjectList.ElementAt(i).Key);
+        }       
+    }
+
     public void MapChanged(S.MapChanged p)
     {
-        foreach (var ob in ObjectList.ToArray())
-            Destroy(ob.Value.gameObject);
-        ObjectList.Clear();
-        
+        ClearObjects();        
         ClearAction();
         User.Player.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
 
@@ -200,6 +203,17 @@ public class GameManager : MonoBehaviour
     public void UserLocation(S.UserLocation p)
     {
         NextAction = 0;
+
+        if (p.Location.X != User.Player.CurrentLocation.x || p.Location.Y != User.Player.CurrentLocation.y)
+        {
+            ClearAction();
+            GameScene.ChatController.ReceiveChat("Displacement.", ChatType.System);
+
+            CurrentScene.Cells[(int)User.Player.CurrentLocation.x, (int)User.Player.CurrentLocation.y].RemoveObject(User.Player);          
+            User.Player.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+            gameObject.transform.position = CurrentScene.Cells[p.Location.X, p.Location.Y].position;
+            CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(User.Player);            
+        }
     }
 
     public void AttackMode(S.ChangeAMode p)
@@ -221,6 +235,7 @@ public class GameManager : MonoBehaviour
             player.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
             player.Armour = p.Armour;
             player.Weapon = p.Weapon;
+            player.Dead = p.Dead;
             player.gameObject.SetActive(true);
             CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(player);
             return;
@@ -235,6 +250,7 @@ public class GameManager : MonoBehaviour
         player.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
         player.Armour = p.Armour;
         player.Weapon = p.Weapon;
+        player.Dead = p.Dead;
         ObjectList.Add(p.ObjectID, player);
         CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(player);
     }
@@ -396,11 +412,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Struck(S.Struck p)
+    {
+        bool struck = User.Player.gameObject.GetComponentInChildren<Animator>().GetBool("Struck");
+
+        if (!struck)
+            User.Player.gameObject.GetComponentInChildren<Animator>().SetBool("Struck", true);
+    }
+
     public void ObjectStruck(S.ObjectStruck p)
     {
         if (ObjectList.TryGetValue(p.ObjectID, out MapObject ob))
         {
-            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Struck, Direction = p.Direction, Location = new Vector2(p.Location.X, p.Location.Y) });
+            bool struck = ob.gameObject.GetComponentInChildren<Animator>().GetBool("Struck");
+
+            if (!struck)
+                ob.gameObject.GetComponentInChildren<Animator>().SetBool("Struck", true);
         }
     }
 
@@ -424,6 +451,13 @@ public class GameManager : MonoBehaviour
                     break;
             }            
         }
+    }
+
+    public void Death(S.Death p)
+    {
+        User.Player.Dead = true;
+
+        User.Player.ActionFeed.Add(new QueuedAction { Action = MirAction.Die, Direction = p.Direction, Location = new Vector2(p.Location.X, p.Location.Y) });
     }
 
     public void ObjectDied(S.ObjectDied p)
@@ -480,6 +514,7 @@ public class GameManager : MonoBehaviour
         if (CurrentScene == null) return;
         if (User.Player == null) return;
         if (UIDragging) return;
+        if (User.Player.Dead) return;
 
         if (User.Player.ActionFeed.Count == 0 && Time.time > InputDelay)
         {

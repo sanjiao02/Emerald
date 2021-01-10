@@ -135,13 +135,15 @@ public class PlayerObject : MapObject
         }
 
         if (ActionFeed.Count == 0)
-        {           
-            CurrentAction = MirAction.Standing;
+        {
+            if (Dead)
+                CurrentAction = MirAction.Dead;
+            else
+                CurrentAction = MirAction.Standing;
         }
         else
         {
             if (this == GameManager.User.Player && Time.time < GameManager.NextAction) return;
-
             QueuedAction action = ActionFeed[0];
             ActionFeed.RemoveAt(0);
 
@@ -203,6 +205,11 @@ public class PlayerObject : MapObject
                         Network.Enqueue(new C.Attack { Direction = Direction, Spell = Spell.None });
                         GameManager.NextAction = Time.time + 2.5f;
                         break;
+                    case MirAction.Die:
+                        Blocking = false;
+                        if (HealthBar != null)
+                            HealthBar.gameObject.SetActive(false);
+                        break;
                 }
             }
 
@@ -211,8 +218,11 @@ public class PlayerObject : MapObject
                 case MirAction.Attack:
                     GetComponentInChildren<Animator>().Play("Attack", -1, normalizedTime: 0f);
                     break;
+                case MirAction.Struck:
+                    GetComponentInChildren<Animator>()?.SetBool("Struck", true);
+                    break;
             }
-        }
+        }        
         GetComponentInChildren<Animator>()?.SetInteger("CurrentAction", (int)CurrentAction);
-    }
+    }    
 }
