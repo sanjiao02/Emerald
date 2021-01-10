@@ -236,6 +236,8 @@ public class GameManager : MonoBehaviour
             player.Armour = p.Armour;
             player.Weapon = p.Weapon;
             player.Dead = p.Dead;
+            player.Blocking = !p.Dead;
+
             player.gameObject.SetActive(true);
             CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(player);
             return;
@@ -250,7 +252,8 @@ public class GameManager : MonoBehaviour
         player.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
         player.Armour = p.Armour;
         player.Weapon = p.Weapon;
-        player.Dead = p.Dead;
+        player.Dead =  p.Dead;
+        player.Blocking = !p.Dead;
         ObjectList.Add(p.ObjectID, player);
         CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(player);
     }
@@ -291,13 +294,9 @@ public class GameManager : MonoBehaviour
             monster.transform.position = CurrentScene.Cells[p.Location.X, p.Location.Y].position;
             monster.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
             monster.gameObject.SetActive(true);
-            if (p.Dead)
-            {
-                monster.Dead = true;
-                monster.CurrentAction = MirAction.Dead;
-            }
-            else
-                CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(monster);
+            monster.Dead = p.Dead;
+            monster.Blocking = !p.Dead;
+
             return;
         }
 
@@ -311,14 +310,10 @@ public class GameManager : MonoBehaviour
         monster.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
         monster.Direction = p.Direction;
         monster.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
+        monster.Dead = p.Dead;
+        monster.Blocking = !p.Dead;
 
-        if (p.Dead)
-        {
-            monster.Dead = true;
-            monster.CurrentAction = MirAction.Dead;
-        }
-        else
-            CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(monster);
+        CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(monster);
         ObjectList.Add(p.ObjectID, monster);        
     }
 
