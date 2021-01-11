@@ -48,8 +48,8 @@ public class MonsterObject : MapObject
                     Vector2 back = ClientFunctions.Back(action.Location, Direction, steps);
                     gameObject.transform.position = GameManager.CurrentScene.Cells[(int)back.x, (int)back.y].position;
 
-                    GameManager.CurrentScene.Cells[(int)CurrentLocation.x, (int)CurrentLocation.y].RemoveObject(this);
-                    GameManager.CurrentScene.Cells[(int)action.Location.x, (int)action.Location.y].AddObject(this);
+                    GameManager.CurrentScene.Cells[CurrentLocation.x, CurrentLocation.y].RemoveObject(this);
+                    GameManager.CurrentScene.Cells[action.Location.x, action.Location.y].AddObject(this);
 
                     StartPosition = gameObject.transform.position;
                     TargetDistance = Vector3.Distance(transform.position, targetpos);

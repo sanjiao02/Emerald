@@ -11,7 +11,7 @@ using S = ServerPackets;
 public class QueuedAction
 {
     public MirAction Action;
-    public Vector2 Location;
+    public Vector2Int Location;
     public MirDirection Direction;
     public List<object> Params;
 }
@@ -109,9 +109,9 @@ public class GameManager : MonoBehaviour
         
         GameScene.UpdateCharacterIcon();
 
-        User.Player.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+        User.Player.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
         User.Player.gameManager = this;
-        UserGameObject.transform.position = CurrentScene.Cells[(int)User.Player.CurrentLocation.x, (int)User.Player.CurrentLocation.y].position;
+        UserGameObject.transform.position = CurrentScene.Cells[User.Player.CurrentLocation.x, User.Player.CurrentLocation.y].position;
         User.Player.Direction = p.Direction;
         User.Player.Model.transform.rotation = ClientFunctions.GetRotation(User.Player.Direction);
 
@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
     {
         ClearObjects();        
         ClearAction();
-        User.Player.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+        User.Player.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
 
         if (p.SceneName != CurrentScene.gameObject.scene.name)
         {
@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour
             if (p.FileName != CurrentScene.FileName)
                 CurrentScene.LoadMap(p.FileName);
             Network.Enqueue(new C.MapChanged { });
-            UserGameObject.transform.position = CurrentScene.Cells[(int)User.Player.CurrentLocation.x, (int)User.Player.CurrentLocation.y].position;
+            UserGameObject.transform.position = CurrentScene.Cells[User.Player.CurrentLocation.x, User.Player.CurrentLocation.y].position;
         }                          
     }
 
@@ -209,8 +209,8 @@ public class GameManager : MonoBehaviour
             ClearAction();
             GameScene.ChatController.ReceiveChat("Displacement.", ChatType.System);
 
-            CurrentScene.Cells[(int)User.Player.CurrentLocation.x, (int)User.Player.CurrentLocation.y].RemoveObject(User.Player);          
-            User.Player.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+            CurrentScene.Cells[User.Player.CurrentLocation.x, User.Player.CurrentLocation.y].RemoveObject(User.Player);          
+            User.Player.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
             gameObject.transform.position = CurrentScene.Cells[p.Location.X, p.Location.Y].position;
             CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(User.Player);            
         }
@@ -229,7 +229,7 @@ public class GameManager : MonoBehaviour
         if (ObjectList.TryGetValue(p.ObjectID, out ob))
         {
             player = (PlayerObject)ob;
-            player.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+            player.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
             player.Direction = p.Direction;
             player.transform.position = CurrentScene.Cells[p.Location.X, p.Location.Y].position;
             player.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour
         player.gameManager = this;
         player.Name = p.Name;
         player.ObjectID = p.ObjectID;
-        player.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+        player.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
         player.Direction = p.Direction;
         player.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
         player.Armour = p.Armour;
@@ -289,7 +289,7 @@ public class GameManager : MonoBehaviour
         {
             monster = (MonsterObject)ob;
             monster.Name = p.Name;
-            monster.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+            monster.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
             monster.Direction = p.Direction;
             monster.transform.position = CurrentScene.Cells[p.Location.X, p.Location.Y].position;
             monster.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
@@ -307,7 +307,7 @@ public class GameManager : MonoBehaviour
         monster.Name = p.Name;
         monster.ObjectID = p.ObjectID;
         monster.Scale = p.Scale;
-        monster.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+        monster.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
         monster.Direction = p.Direction;
         monster.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
         monster.Dead = p.Dead;
@@ -326,7 +326,7 @@ public class GameManager : MonoBehaviour
         {
             npc = (NPCObject)ob;
             npc.Name = p.Name;
-            npc.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+            npc.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
             npc.Direction = p.Direction;
             npc.transform.position = CurrentScene.Cells[p.Location.X, p.Location.Y].position;
             npc.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
@@ -341,7 +341,7 @@ public class GameManager : MonoBehaviour
             npc = Instantiate(NPCModels[p.Image], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity).GetComponent<NPCObject>();
         npc.Name = p.Name;
         npc.ObjectID = p.ObjectID;
-        npc.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+        npc.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
         npc.Direction = p.Direction;
         npc.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
         CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(npc);
@@ -354,7 +354,7 @@ public class GameManager : MonoBehaviour
         ItemObject item = model.GetComponent<ItemObject>();
         item.Name = p.Name;
         item.ObjectID = p.ObjectID;
-        item.CurrentLocation = new Vector2(p.Location.X, p.Location.Y);
+        item.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
 
         CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(item);
         ObjectList.Add(p.ObjectID, item);
@@ -371,7 +371,7 @@ public class GameManager : MonoBehaviour
             }
             else
                 ob.gameObject.SetActive(false);
-            CurrentScene.Cells[(int)ob.CurrentLocation.x, (int)ob.CurrentLocation.y].RemoveObject(ob);
+            CurrentScene.Cells[ob.CurrentLocation.x, ob.CurrentLocation.y].RemoveObject(ob);
         }
     }
 
@@ -379,7 +379,7 @@ public class GameManager : MonoBehaviour
     {
         if (ObjectList.TryGetValue(p.ObjectID, out MapObject ob))
         {
-            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Standing, Direction = p.Direction, Location = new Vector2(p.Location.X, p.Location.Y) });
+            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Standing, Direction = p.Direction, Location = new Vector2Int(p.Location.X, p.Location.Y) });
         }
     }
 
@@ -387,7 +387,7 @@ public class GameManager : MonoBehaviour
     {
         if (ObjectList.TryGetValue(p.ObjectID, out MapObject ob))
         {            
-            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Walking, Direction = p.Direction, Location = new Vector2(p.Location.X, p.Location.Y) });
+            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Walking, Direction = p.Direction, Location = new Vector2Int(p.Location.X, p.Location.Y) });
         }
     }
 
@@ -395,7 +395,7 @@ public class GameManager : MonoBehaviour
     {
         if (ObjectList.TryGetValue(p.ObjectID, out MapObject ob))
         {
-            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Running, Direction = p.Direction, Location = new Vector2(p.Location.X, p.Location.Y) });
+            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Running, Direction = p.Direction, Location = new Vector2Int(p.Location.X, p.Location.Y) });
         }
     }
 
@@ -403,7 +403,7 @@ public class GameManager : MonoBehaviour
     {
         if (ObjectList.TryGetValue(p.ObjectID, out MapObject ob))
         {
-            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Attack, Direction = p.Direction, Location = new Vector2(p.Location.X, p.Location.Y) });
+            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Attack, Direction = p.Direction, Location = new Vector2Int(p.Location.X, p.Location.Y) });
         }
     }
 
@@ -452,14 +452,14 @@ public class GameManager : MonoBehaviour
     {
         User.Player.Dead = true;
 
-        User.Player.ActionFeed.Add(new QueuedAction { Action = MirAction.Die, Direction = p.Direction, Location = new Vector2(p.Location.X, p.Location.Y) });
+        User.Player.ActionFeed.Add(new QueuedAction { Action = MirAction.Die, Direction = p.Direction, Location = new Vector2Int(p.Location.X, p.Location.Y) });
     }
 
     public void ObjectDied(S.ObjectDied p)
     {
         if (ObjectList.TryGetValue(p.ObjectID, out MapObject ob))
         {
-            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Die, Direction = p.Direction, Location = new Vector2(p.Location.X, p.Location.Y) });
+            ob.ActionFeed.Add(new QueuedAction { Action = MirAction.Die, Direction = p.Direction, Location = new Vector2Int(p.Location.X, p.Location.Y) });
         }
     }
 
@@ -564,7 +564,7 @@ public class GameManager : MonoBehaviour
 
     public static bool TryWalk(MirDirection dir)
     {
-        Vector2 location = ClientFunctions.VectorMove(User.Player.CurrentLocation, dir, 1);
+        Vector2Int location = ClientFunctions.VectorMove(User.Player.CurrentLocation, dir, 1);
         if (CanWalk(location))
         {
             GameScene.QueuedAction = new QueuedAction { Action = MirAction.Walking, Direction = dir, Location = location };
@@ -575,8 +575,8 @@ public class GameManager : MonoBehaviour
 
     public static bool TryRun(MirDirection dir)
     {
-        Vector2 location = ClientFunctions.VectorMove(User.Player.CurrentLocation, MouseDirection, 1);
-        Vector2 farlocation = ClientFunctions.VectorMove(User.Player.CurrentLocation, MouseDirection, 2);
+        Vector2Int location = ClientFunctions.VectorMove(User.Player.CurrentLocation, MouseDirection, 1);
+        Vector2Int farlocation = ClientFunctions.VectorMove(User.Player.CurrentLocation, MouseDirection, 2);
         if (CanWalk(location) && CanWalk(farlocation))
         {
             GameScene.QueuedAction = new QueuedAction { Action = MirAction.Running, Direction = dir, Location = farlocation };

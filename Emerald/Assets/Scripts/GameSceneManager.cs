@@ -181,8 +181,8 @@ public class GameSceneManager : MonoBehaviour
             }
             else if (TargetObject != null && !(TargetObject is MonsterObject) && !TargetObject.Dead && TargetObject.gameObject.activeSelf && CanAttack())
             {
-                Point self = new Point((int)User.Player.CurrentLocation.x, (int)User.Player.CurrentLocation.y);
-                Point targ = new Point((int)TargetObject.CurrentLocation.x, (int)TargetObject.CurrentLocation.y);
+                Point self = new Point(User.Player.CurrentLocation.x, User.Player.CurrentLocation.y);
+                Point targ = new Point(TargetObject.CurrentLocation.x, TargetObject.CurrentLocation.y);
                 if (Functions.InRange(self, targ, 1))
                 {
                     NextHitTime = Time.time + 1.6f;
@@ -251,8 +251,8 @@ public class GameSceneManager : MonoBehaviour
             GameManager.User.CanRun = false;
             if (TargetObject != null && TargetObject is MonsterObject && !TargetObject.Dead && TargetObject.gameObject.activeSelf && CanAttack())
             {
-                Point self = new Point((int)User.Player.CurrentLocation.x, (int)User.Player.CurrentLocation.y);
-                Point targ = new Point((int)TargetObject.CurrentLocation.x, (int)TargetObject.CurrentLocation.y);
+                Point self = new Point(User.Player.CurrentLocation.x, User.Player.CurrentLocation.y);
+                Point targ = new Point(TargetObject.CurrentLocation.x, TargetObject.CurrentLocation.y);
                 if (Functions.InRange(self, targ, 1))
                 {
                     NextHitTime = Time.time + 1.6f;

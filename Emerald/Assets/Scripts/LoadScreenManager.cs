@@ -86,7 +86,7 @@ public class LoadScreenManager : MonoBehaviour
         }
 
         GameManager.CurrentScene.LoadMap(fileName);
-        GameManager.UserGameObject.transform.position = GameManager.CurrentScene.Cells[(int)GameManager.User.Player.CurrentLocation.x, (int)GameManager.User.Player.CurrentLocation.y].position;
+        GameManager.UserGameObject.transform.position = GameManager.CurrentScene.Cells[GameManager.User.Player.CurrentLocation.x, GameManager.User.Player.CurrentLocation.y].position;
         slider.value = 1f;
         loadoperation = null;
         unloadoperation = null;

@@ -1,40 +1,40 @@
 ﻿using UnityEngine;
 
 public static class ClientFunctions
-{   
-    public static Vector2 VectorMove(Vector2 p, MirDirection d, int i)
+{
+    public static Vector2Int VectorMove(Vector2Int p, MirDirection d, int i)
     {
-        Vector2 newp = new Vector2(p.x, p.y);
+        Vector2Int newp = new Vector2Int(p.x, p.y);
         switch (d)
         {
             case MirDirection.Up:
-                newp += Vector2.down * i;
+                newp += Vector2Int.down * i;
                 break;
             case MirDirection.UpRight:
-                newp += Vector2.down * i + Vector2.right * i;
+                newp += Vector2Int.down * i + Vector2Int.right * i;
                 break;
             case MirDirection.Right:
-                newp += Vector2.right * i;
+                newp += Vector2Int.right * i;
                 break;
             case MirDirection.DownRight:
-                newp += Vector2.up * i + Vector2.right * i;
+                newp += Vector2Int.up * i + Vector2Int.right * i;
                 break;
             case MirDirection.Down:
-                newp += Vector2.up * i;
+                newp += Vector2Int.up * i;
                 break;
             case MirDirection.DownLeft:
-                newp += Vector2.up * i + Vector2.left * i;
+                newp += Vector2Int.up * i + Vector2Int.left * i;
                 break;
             case MirDirection.Left:
-                newp += Vector2.left * i;
+                newp += Vector2Int.left * i;
                 break;
             case MirDirection.UpLeft:
-                newp += Vector2.down * i + Vector2.left * i;
+                newp += Vector2Int.down * i + Vector2Int.left * i;
                 break;
         }
         return newp;
     }
-    public static Vector2 Back(Vector2 p, MirDirection direction, int i)
+    public static Vector2Int Back(Vector2Int p, MirDirection direction, int i)
     {
         MirDirection backdirection = (MirDirection)(((int)direction + 4) % 8);
         return VectorMove(p, backdirection, i);

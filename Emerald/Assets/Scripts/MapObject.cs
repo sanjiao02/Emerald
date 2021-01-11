@@ -61,7 +61,7 @@ public class MapObject : MonoBehaviour
     [HideInInspector]
     public uint ObjectID;
     [HideInInspector]
-    public Vector2 CurrentLocation;
+    public Vector2Int CurrentLocation;
     [HideInInspector]
     public MirDirection Direction;
     [HideInInspector]
