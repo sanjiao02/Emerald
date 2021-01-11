@@ -411,8 +411,9 @@ public class GameManager : MonoBehaviour
     {
         bool struck = User.Player.gameObject.GetComponentInChildren<Animator>().GetBool("Struck");
 
-        if (!struck)
-            User.Player.gameObject.GetComponentInChildren<Animator>().SetBool("Struck", true);
+        if (struck || GameScene.QueuedAction != null && GameScene.QueuedAction.Action > MirAction.Running || User.Player.CurrentAction > MirAction.Running)
+            return;
+        User.Player.gameObject.GetComponentInChildren<Animator>().SetBool("Struck", true);
     }
 
     public void ObjectStruck(S.ObjectStruck p)
