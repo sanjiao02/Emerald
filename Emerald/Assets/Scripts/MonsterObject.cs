@@ -14,7 +14,8 @@ public class MonsterObject : MapObject
     {
         base.Start();
         HealthBar = Instantiate(GameScene.RedHealthBar, NameLabel.transform).GetComponent<Renderer>();
-        GetComponentInChildren<MonsterAnimationController>().ParentObject = this;
+        GetComponentInChildren<MonsterAnimationController>()?.SetParent(this);
+
     }
 
     public override void SetAction()

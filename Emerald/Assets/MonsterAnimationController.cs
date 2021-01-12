@@ -5,10 +5,20 @@ using UnityEngine;
 public class MonsterAnimationController : MonoBehaviour
 {
     [HideInInspector]
-    public MonsterObject ParentObject;
+    MonsterObject parentObject;
+
+    public void SetParent(MonsterObject ob)
+    {
+        parentObject = ob;
+    }
 
     void SetAction()
     {
-        ParentObject?.SetAction();
+        parentObject?.SetAction();
+    }
+
+    void StruckEnd()
+    {
+        parentObject?.StruckEnd();
     }
 }
