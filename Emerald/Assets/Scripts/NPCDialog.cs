@@ -21,18 +21,14 @@ public class NPCDialog : MonoBehaviour
 
         for (int i = 0; i < Lines.Count; i++)
         {
-
-
             List<Match> matchList = R.Matches(lines[i]).Cast<Match>().ToList();
             matchList.AddRange(C.Matches(lines[i]).Cast<Match>());
 
-            foreach (Match match in matchList.OrderBy(o => o.Index).ToList())
+            foreach (Match match in matchList)
             {
                 Capture capture = match.Groups[1].Captures[0];
                 string[] values = capture.Value.Split('/');
                 lines[i] = lines[i].Remove(capture.Index - 1).Insert(capture.Index - 1, "<sprite=19>" + " " + "<link=" + values[1] + ">" + values[0] + "</link>");
-                string text = lines[i].Substring(0, capture.Index - 1) + " ";
-
             }
             Text.text += lines[i] + "\n";
         }
