@@ -530,4 +530,11 @@ public class GameSceneManager : MonoBehaviour
         DamagePopup popup = Instantiate(DamagePopup, location, Quaternion.identity).GetComponent<DamagePopup>();
         popup.SetDamage(damage);
     }
+    public void NPCtextbutton(string LinkId)
+    {
+
+        Network.Enqueue(new C.CallNPC { ObjectID = NPCID, Key = "[" + LinkId + "]" });
+        GameManager.InputDelay = Time.time + 0.5f;
+
+    }
 }
