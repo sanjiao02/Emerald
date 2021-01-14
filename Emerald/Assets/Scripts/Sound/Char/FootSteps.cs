@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FootStepsv2 : MonoBehaviour
+public class FootSteps : MonoBehaviour
 {
     [SerializeField] private AudioClip[] clips;
 
