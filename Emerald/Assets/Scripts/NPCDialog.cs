@@ -28,7 +28,7 @@ public class NPCDialog : MonoBehaviour
             {
                 Capture capture = match.Groups[1].Captures[0];
                 string[] values = capture.Value.Split('/');
-                lines[i] = lines[i].Remove(capture.Index - 1).Insert(capture.Index - 1, "<sprite=19>" + " " + "<link=" + values[1] + ">" + values[0] + "</link>");
+                lines[i] = lines[i].Remove(capture.Index - 1).Insert(capture.Index - 1, "<sprite=19>" + " " + "<color=#FFE554><link=" + values[1] + ">" + values[0] + "</link></color>");
             }
             Text.text += lines[i] + "\n";
         }
