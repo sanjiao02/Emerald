@@ -113,10 +113,10 @@ MonoBehaviour:
     value: 1
   shutterAngle:
     overrideState: 0
-    value: 270
+    value: 360
   sampleCount:
     overrideState: 0
-    value: 10
+    value: 32
 --- !u!114 &114359365496500984
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -142,7 +142,7 @@ MonoBehaviour:
     defaultState: 1
   tonemapper:
     overrideState: 1
-    value: 2
+    value: 3
   toneCurveToeStrength:
     overrideState: 0
     value: 0
@@ -1530,10 +1530,10 @@ MonoBehaviour:
     value: 1
   mode:
     overrideState: 1
-    value: 1
+    value: 0
   intensity:
     overrideState: 1
-    value: 0.71
+    value: 0.5
   color:
     overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
@@ -1551,7 +1551,7 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 1
-    value: 1.5
+    value: 1
   directLightingStrength:
     overrideState: 0
     value: 0
