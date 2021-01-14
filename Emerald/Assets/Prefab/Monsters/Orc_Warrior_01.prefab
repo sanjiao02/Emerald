@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4618889320998541759}
-  - component: {fileID: 5697937555486552244}
   m_Layer: 0
   m_Name: Bip01-Spine
   m_TagString: Untagged
@@ -157,119 +156,6 @@ Transform:
   m_Father: {fileID: 4176343705848437991}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5697937555486552244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513919907414526295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d8c16a0ce207c468d12e9757f0b264, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rootNode: {fileID: 4618889320998541759}
-  childNodes:
-  - {fileID: 4618889320998541759}
-  - {fileID: 6563815958795789913}
-  - {fileID: 4179785787930962346}
-  - {fileID: 5856648598248434972}
-  - {fileID: 9131808905383402619}
-  - {fileID: 4141256782041323818}
-  - {fileID: 3347739498552499816}
-  - {fileID: 4248708470646318719}
-  - {fileID: 5463827492110312486}
-  - {fileID: 1333323001064200591}
-  - {fileID: 8444777020408503662}
-  - {fileID: 5065116064507108729}
-  - {fileID: 2596659835073995612}
-  - {fileID: 6961098691757375011}
-  - {fileID: 2136215245431731704}
-  - {fileID: 6191499240233228578}
-  - {fileID: 8886075822962797861}
-  - {fileID: 1008038461633357367}
-  - {fileID: 1303828788378133024}
-  - {fileID: 6680298150160990766}
-  - {fileID: 8532733866279894079}
-  - {fileID: 5137710394184339591}
-  - {fileID: 974531092279101276}
-  - {fileID: 4371510612969679866}
-  - {fileID: 6377423220147807230}
-  - {fileID: 3477225289937910110}
-  - {fileID: 7600825593517397609}
-  - {fileID: 6497532905960479711}
-  - {fileID: 1098083433255923186}
-  - {fileID: 3298230043786936410}
-  - {fileID: 1231728957310233644}
-  - {fileID: 4634250042913650063}
-  - {fileID: 919500041461370226}
-  - {fileID: 399893424090195756}
-  - {fileID: 4473964742235409434}
-  - {fileID: 5437571559053370697}
-  - {fileID: 2276474215700682286}
-  - {fileID: 6232334196811465980}
-  - {fileID: 3719920234607545441}
-  - {fileID: 5021100331684723435}
-  - {fileID: 4054429448491520291}
-  - {fileID: 5611172264774526019}
-  - {fileID: 8561074072564515594}
-  - {fileID: 3577427103121620098}
-  - {fileID: 3478489903291377159}
-  - {fileID: 4232424583946393239}
-  - {fileID: 2203595419703006079}
-  - {fileID: 5890960735686085697}
-  - {fileID: 5270312672825734904}
-  - {fileID: 5481593115932692001}
-  - {fileID: 7366463081740143159}
-  - {fileID: 4405516500663949501}
-  - {fileID: 6219594222949600052}
-  - {fileID: 783472468451581096}
-  - {fileID: 7233174256818480807}
-  - {fileID: 3734510175072231209}
-  - {fileID: 600965981559812857}
-  - {fileID: 7124139620727141151}
-  - {fileID: 3443973729310676944}
-  - {fileID: 5631729971236683570}
-  - {fileID: 1438697321962942500}
-  - {fileID: 6403432208433112822}
-  - {fileID: 4097152794649047635}
-  - {fileID: 8435356406716771165}
-  - {fileID: 2171743006034484071}
-  - {fileID: 9217092586492925431}
-  - {fileID: 6801455806242375718}
-  - {fileID: 3162529838680435621}
-  - {fileID: 5533951583061721939}
-  - {fileID: 2702075831065719278}
-  - {fileID: 2855479751030352515}
-  - {fileID: 3414477666408436409}
-  - {fileID: 7533049699961065524}
-  - {fileID: 7910214560367842042}
-  - {fileID: 6442044583981548515}
-  - {fileID: 2698577229147662516}
-  - {fileID: 4030066366465230558}
-  - {fileID: 5858295758002852224}
-  - {fileID: 5298026748478244021}
-  - {fileID: 6420061489765234470}
-  - {fileID: 9010563378723071377}
-  - {fileID: 2533028490201589984}
-  - {fileID: 9138219570291078244}
-  - {fileID: 3148761586409595545}
-  - {fileID: 8320281995135488640}
-  - {fileID: 5644643738831577395}
-  - {fileID: 1168355217997092261}
-  - {fileID: 5570864191456017457}
-  - {fileID: 8880790137952269951}
-  - {fileID: 1796144811182726005}
-  - {fileID: 9211187549298949445}
-  - {fileID: 322563457599876759}
-  - {fileID: 7355850066683707464}
-  - {fileID: 6485615136440096649}
-  - {fileID: 7715752151085304209}
-  HeadSize: 0.084
-  SpineSize: 0.2
-  ArmSize: 0.073
-  LegSize: 0.091
 --- !u!1 &571437468977429781
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,13 +420,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd08bdc941ae8564eb3c7223cc21f27d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectRenderer: {fileID: 0}
+  ObjectRenderer: {fileID: 8858223819970876496}
   NameLabelObject: {fileID: 8972585348359723467, guid: fb59f2525fca14345afceae9453fb40a,
     type: 3}
   NameLocation: {fileID: 2096721172619067910}
   NameLabel: {fileID: 177940762220530538, guid: fb59f2525fca14345afceae9453fb40a,
     type: 3}
-  Model: {fileID: 0}
+  Model: {fileID: 917323974299790474}
   MoveSpeed: 1.2
   OutlineWidth: 0.03
   Name: 
@@ -709,12 +595,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213683165147824540}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 165000370332116453}
   m_Father: {fileID: 3626996100271777489}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1291195050868627473
 GameObject:
@@ -1636,7 +1522,7 @@ GameObject:
   - component: {fileID: 1943941794727499598}
   - component: {fileID: 8858223819970876496}
   m_Layer: 0
-  m_Name: orc_warrior_01.mo
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1654,7 +1540,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3626996100271777489}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &8858223819970876496
 SkinnedMeshRenderer:
@@ -1675,6 +1561,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 04912063c10c4852828229d58100291a, type: 2}
+  - {fileID: 2100000, guid: 9df71da1882afd347bbeabb06d042f1b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2224,7 +2111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3626996100271777489}
   m_Layer: 0
-  m_Name: orc_warrior_01
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2241,8 +2128,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1943941794727499598}
   - {fileID: 992054532226574586}
+  - {fileID: 1943941794727499598}
   m_Father: {fileID: 3308181225411376081}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
