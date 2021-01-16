@@ -340,9 +340,9 @@ MonoBehaviour:
   Direction: 0
   CurrentAction: 0
   ActionType: 0
-  AttackSound: {fileID: 8300000, guid: 8ab9a5e8b53287d4ebcf93b0004b989a, type: 3}
-  StruckSound: {fileID: 8300000, guid: aab61971f7a89894bb3aa4faa3b9f820, type: 3}
-  DeathSound: {fileID: 8300000, guid: 20876dac81c461f49ab3e92d93340b95, type: 3}
+  AttackSound: {fileID: 8300000, guid: 055f9d3ae733bcb478450bee788be333, type: 3}
+  StruckSound: {fileID: 8300000, guid: a0bd922eb61bd1146b34713d48f83d1c, type: 3}
+  DeathSound: {fileID: 8300000, guid: d0ca4a32d1f98384abe4c3793878af42, type: 3}
 --- !u!136 &6456480439609341751
 CapsuleCollider:
   m_ObjectHideFlags: 0

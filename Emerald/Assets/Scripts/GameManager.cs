@@ -677,6 +677,7 @@ public class GameManager : MonoBehaviour
         User.Player.IsMoving = false;
         User.Player.CurrentAction = MirAction.Standing;
         User.Player.GetComponentInChildren<Animator>().Play("Idle", -1, 0f);
+        User.CanRun = false;
     }
 
     static bool CanWalk(Vector2 location)
