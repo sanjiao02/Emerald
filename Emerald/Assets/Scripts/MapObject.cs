@@ -105,7 +105,7 @@ public class MapObject : MonoBehaviour
             var distance = (TargetPosition - StartPosition) * MoveSpeed * Time.deltaTime;
             var newpos = transform.position + distance;
 
-            if (Vector3.Distance(StartPosition, newpos) > TargetDistance)
+            if (Vector3.Distance(StartPosition, newpos) >= TargetDistance)
             {
                 transform.position = new Vector3(TargetPosition.x, transform.position.y, TargetPosition.z);
                 IsMoving = false;

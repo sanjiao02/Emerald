@@ -61,9 +61,9 @@ public class PlayerObject : MapObject
                 Destroy(ArmourModel);
 
             if (value < gameManager.WarriorModels.Count)
-                ArmourModel = Instantiate(gameManager.WarriorModels[value], Model.transform);
+                ArmourModel = Instantiate(gameManager.WarriorModels[value * 2 + (int)Gender], Model.transform);
             else
-                ArmourModel = Instantiate(gameManager.WarriorModels[0], Model.transform);
+                ArmourModel = Instantiate(gameManager.WarriorModels[(int)Gender], Model.transform);
 
             ArmourModel.GetComponentInChildren<PlayerAnimationController>().ParentObject = this;
             ArmourModel.GetComponentInChildren<Animator>().SetInteger("CurrentAction", (int)CurrentAction);
@@ -78,7 +78,8 @@ public class PlayerObject : MapObject
                     break;
                 }
             }
-            Instantiate(gameManager.WarriorFaces[0], HeadBone.transform);
+            Instantiate(gameManager.WarriorFaces[(int)Gender], HeadBone.transform);
+            Instantiate(gameManager.WarriorHairs[(int)Gender], HeadBone.transform);
 
             foreach (Transform child in ArmourModel.GetComponentsInChildren<Transform>())
             {
@@ -110,7 +111,12 @@ public class PlayerObject : MapObject
     {        
         base.Start();
         ObjectRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        HealthBar = Instantiate(GameScene.GreenHealthBar, NameLabel.transform).GetComponent<Renderer>();
+        HealthBar = Instantiate(GameScene.GreenHealthBar, NameLabel.transform).GetComponent<Renderer>();        
+    }
+
+    public void SetModel()
+    {
+        Model = Instantiate(gameManager.GenderModels[(int)Gender], gameObject.transform);
         Camera.transform.LookAt(Model.transform);
     }
 

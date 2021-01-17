@@ -19,6 +19,7 @@ public class QueuedAction
 public class GameManager : MonoBehaviour
 {
     public GameObject PlayerModel;
+    public GameObject[] GenderModels;
     public List<GameObject> WarriorModels;
     public List<GameObject> WarriorFaces;
     public List<GameObject> WarriorHairs;
@@ -91,15 +92,15 @@ public class GameManager : MonoBehaviour
     public void UserInformation(S.UserInformation p)
     {
         User.gameObject.SetActive(true);
-        UserGameObject = Instantiate(PlayerModel, User.transform.position, Quaternion.identity);
-        UserGameObject.GetComponentInChildren<AudioListener>().enabled = true;        
+        UserGameObject = Instantiate(PlayerModel, User.transform.position, Quaternion.identity);            
 
         User.Player = UserGameObject.GetComponent<PlayerObject>();
-        User.Player.ObjectID = p.ObjectID;
+        User.Player.gameManager = this;
         User.Player.ObjectID = p.ObjectID;
         User.SetName(p.Name);
         User.SetClass(p.Class);
         User.Player.Gender = p.Gender;
+        User.Player.SetModel();
         User.SetLevel(p.Level);
         User.Experience = p.Experience;
         User.MaxExperience = p.MaxExperience;
@@ -109,8 +110,7 @@ public class GameManager : MonoBehaviour
         
         GameScene.UpdateCharacterIcon();
 
-        User.Player.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
-        User.Player.gameManager = this;
+        User.Player.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);        
         UserGameObject.transform.position = CurrentScene.Cells[User.Player.CurrentLocation.x, User.Player.CurrentLocation.y].position;
         User.Player.Direction = p.Direction;
         User.Player.Model.transform.rotation = ClientFunctions.GetRotation(User.Player.Direction);
@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour
         User.Player.Camera.SetActive(true);
         User.Player.MiniMapCamera.SetActive(true);
         ObjectList.Add(p.ObjectID, User.Player);
+        UserGameObject.GetComponentInChildren<AudioListener>().enabled = true;
         Tooltip.cam = User.Player.Camera.GetComponent<Camera>();
     }
 
@@ -233,6 +234,7 @@ public class GameManager : MonoBehaviour
             player.Direction = p.Direction;
             player.transform.position = CurrentScene.Cells[p.Location.X, p.Location.Y].position;
             player.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
+            player.Gender = p.Gender;
             player.Armour = p.Armour;
             player.Weapon = p.Weapon;
             player.Dead = p.Dead;
@@ -247,9 +249,11 @@ public class GameManager : MonoBehaviour
         player.gameManager = this;
         player.Name = p.Name;
         player.ObjectID = p.ObjectID;
+        player.Gender = p.Gender;
+        player.SetModel();
         player.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
         player.Direction = p.Direction;
-        player.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
+        player.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);        
         player.Armour = p.Armour;
         player.Weapon = p.Weapon;
         player.Dead =  p.Dead;
