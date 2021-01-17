@@ -20,6 +20,8 @@ public class GameSceneManager : MonoBehaviour
     }
     private int TargettableLayerMask;
 
+    public GameObject NPCCamera;
+
     public TMP_InputField ChatBar;      
     public Scrollbar ScrollBar;
     public Image ExperienceBar;
@@ -235,6 +237,7 @@ public class GameSceneManager : MonoBehaviour
                         NPCObject npc = (NPCObject)MouseObject;
                         NPCName = npc.Name;
                         NPCID = npc.ObjectID;
+                        NPCCamera.transform.SetParent(npc.CameraLocation.transform, false);
                         Network.Enqueue(new C.CallNPC { ObjectID = npc.ObjectID, Key = "[@Main]" });
                         GameManager.InputDelay = Time.time + 0.5f;
                         return;

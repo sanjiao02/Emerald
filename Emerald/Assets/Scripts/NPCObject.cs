@@ -6,6 +6,8 @@ using C = ClientPackets;
 
 public class NPCObject : MapObject
 {
+    public GameObject CameraLocation;
+
     public override void SetAction()
     {
         if (ActionFeed.Count == 0)
