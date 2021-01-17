@@ -479,6 +479,19 @@ public class GameManager : MonoBehaviour
     public void ObjectChat(S.ObjectChat p)
     {
         GameScene.ChatController.ReceiveChat(p.Text, p.Type);
+
+        if (p.Type != ChatType.Normal) return;
+
+        if (ObjectList.TryGetValue(p.ObjectID, out MapObject ob))
+        {
+            if (ob is PlayerObject player)
+            {
+                player.ChatLabel.SetText(p.Text);
+                player.ChatTime = Time.time + 5;
+            }
+        }
+
+        
     }
 
     public void NewItemInfo(S.NewItemInfo info)

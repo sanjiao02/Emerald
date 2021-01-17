@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Network = EmeraldNetwork.Network;
 using C = ClientPackets;
@@ -12,6 +13,14 @@ public class PlayerObject : MapObject
 
     public GameObject Camera;
     public GameObject MiniMapCamera;
+
+    public GameObject ChatLabelObject;
+    public Transform ChatLocation;
+    [HideInInspector]
+    public TMP_Text ChatLabel;
+    [HideInInspector]
+    public float ChatTime;
+
     private float camerazoom;
     [HideInInspector]
     public MirClass Class;
@@ -111,7 +120,18 @@ public class PlayerObject : MapObject
     {        
         base.Start();
         ObjectRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        HealthBar = Instantiate(GameScene.GreenHealthBar, NameLabel.transform).GetComponent<Renderer>();        
+        HealthBar = Instantiate(GameScene.GreenHealthBar, NameLabel.transform).GetComponent<Renderer>();
+        ChatLabel = Instantiate(ChatLabelObject, ChatLocation.position, Quaternion.identity, gameObject.transform).GetComponent<TMP_Text>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (ChatLabel.text != string.Empty && Time.time > ChatTime)
+        {
+            ChatLabel.SetText(string.Empty);
+        }
     }
 
     public void SetModel()
