@@ -103,11 +103,12 @@ public class GameManager : MonoBehaviour
         User.Player.SetModel();
         User.SetLevel(p.Level);
         User.Experience = p.Experience;
-        User.MaxExperience = p.MaxExperience;
+        User.MaxExperience = p.MaxExperience;        
 
         User.HP = p.HP;
         User.MP = p.MP;
-        
+        User.Player.HealthTime = float.MaxValue;
+
         GameScene.UpdateCharacterIcon();
 
         User.Player.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);        
@@ -436,6 +437,8 @@ public class GameManager : MonoBehaviour
         if (ObjectList.TryGetValue(p.ObjectID, out MapObject ob))
         {
             ob.PercentHealth = p.Percent;
+            ob.HealthTime = Time.time + 5;
+            ob.HealthBar.gameObject.SetActive(true);
         }
     }
 

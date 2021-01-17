@@ -14,10 +14,11 @@ public class MapObject : MonoBehaviour
     public Renderer ObjectRenderer;
     public GameObject NameLabelObject;
     public Transform NameLocation;
-    protected Renderer HealthBar;
+    public Renderer HealthBar;
     [HideInInspector]
     public TMP_Text NameLabel;
     public GameObject Model;
+    public GameObject Parent;
     [Range(0f, 10f)]
     public float MoveSpeed;
     [Range(0f, 10f)]
@@ -47,7 +48,7 @@ public class MapObject : MonoBehaviour
             GameScene.HPGlobe.material.SetFloat("_Percent", 1 - value / 100F);
         }
     }
-    public long HealthTime;
+    public float HealthTime;
 
     [HideInInspector]
     public bool IsMoving;
@@ -81,7 +82,7 @@ public class MapObject : MonoBehaviour
 
             scale = value;
             float s = value / 100f;
-            Model.transform.localScale *= s;
+            Parent.transform.localScale *= s;
         }
     }
 
@@ -115,6 +116,9 @@ public class MapObject : MonoBehaviour
 
             transform.position = newpos;
         }
+
+        if (HealthBar.gameObject.activeSelf && Time.time > HealthTime)
+            HealthBar.gameObject.SetActive(false);
     }
 
     public virtual void SetAction()
