@@ -14148,6 +14148,7 @@ MonoBehaviour:
   ChatBar: {fileID: 635084011}
   ScrollBar: {fileID: 1854083844}
   ExperienceBar: {fileID: 1160745593}
+  ExperiencePercent: {fileID: 1284693436}
   ChatController: {fileID: 1026178501}
   eventSystem: {fileID: 1529085024}
   CharacterName: {fileID: 1307670163}

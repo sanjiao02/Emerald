@@ -25,6 +25,7 @@ public class GameSceneManager : MonoBehaviour
     public TMP_InputField ChatBar;      
     public Scrollbar ScrollBar;
     public Image ExperienceBar;
+    public TMP_Text ExperiencePercent;
     public ChatController ChatController;
     public EventSystem eventSystem;
     public TMP_Text CharacterName;

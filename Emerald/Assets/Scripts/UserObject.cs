@@ -72,6 +72,7 @@ public class UserObject : MonoBehaviour
             if (percent < 0) percent = 0;
 
             GameScene.ExperienceBar.fillAmount = percent;
+            GameScene.ExperiencePercent.text = string.Format("{0:0.00}", percent * 100);
         }
     }
 
@@ -92,6 +93,7 @@ public class UserObject : MonoBehaviour
             if (percent < 0) percent = 0;
 
             GameScene.ExperienceBar.fillAmount = percent;
+            GameScene.ExperiencePercent.text = string.Format("{0:0.00}", percent * 100);
         }
     }
     public byte LifeOnHit;
