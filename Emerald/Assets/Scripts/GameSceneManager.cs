@@ -544,6 +544,12 @@ public class GameSceneManager : MonoBehaviour
             $"Luck: {User.Luck}";
     }
 
+    public void ExperienceChanged(float percent)
+    {
+        ExperienceBar.fillAmount = percent;
+        ExperiencePercent.text = string.Format("{0:0.00}", percent * 100f);
+    }
+
     public void LogOut_Click()
     {
         MessageBox.Show($"Return to Character Select?", true, true);
