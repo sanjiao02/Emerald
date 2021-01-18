@@ -108,6 +108,9 @@ public class GameManager : MonoBehaviour
         User.HP = p.HP;
         User.MP = p.MP;
         User.Player.HealthTime = float.MaxValue;
+        User.Gold = p.Gold;
+        User.Credit = p.Credit;
+
 
         GameScene.UpdateCharacterIcon();
 

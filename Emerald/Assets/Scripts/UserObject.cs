@@ -55,6 +55,8 @@ public class UserObject : MonoBehaviour
                   CurrentWearWeight, MaxWearWeight;
     public ushort CurrentBagWeight, MaxBagWeight;
 
+    public uint Gold, Credit;
+
     private long experience;
     public long Experience
     {
@@ -173,6 +175,13 @@ public class UserObject : MonoBehaviour
         RefreshEquipmentStats();
 
         GameScene.RefreshStatsDisplay();
+        RefreshStatsInventory();
+    }
+    public void RefreshStatsInventory()
+    {
+        GameScene.bagWeight.text = "Weight:  " + CurrentBagWeight + "/" + MaxBagWeight;
+        GameScene.gold.text = string.Format("{0:###,###,###}", Gold);
+        GameScene.gameGold.text = string.Format("{0:###,###,###}", Credit);
     }
 
     private void RefreshLevelStats()

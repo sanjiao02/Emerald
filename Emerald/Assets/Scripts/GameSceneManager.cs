@@ -25,7 +25,7 @@ public class GameSceneManager : MonoBehaviour
     public TMP_InputField ChatBar;      
     public Scrollbar ScrollBar;
     public Image ExperienceBar;
-    public TMP_Text ExperiencePercent;
+    public TMP_Text ExperiencePercent, bagWeight, gold, gameGold;
     public ChatController ChatController;
     public EventSystem eventSystem;
     public TMP_Text CharacterName;
@@ -314,11 +314,40 @@ public class GameSceneManager : MonoBehaviour
     {
         GameManager.Bind(p.Item);
         GameManager.AddItem(p.Item);
-        //User.RefreshStats();
+        User.RefreshStats();
 
         ChatController.ReceiveChat(string.Format(GameLanguage.YouGained, p.Item.FriendlyName), ChatType.System);
     }
+    public void GainedGold(S.GainedGold p)
+    {
+        if (p.Gold == 0) return;
 
+        User.Gold += p.Gold;
+
+        ChatController.ReceiveChat(string.Format("You Gained {0:###,###,###} Gold.", p.Gold), ChatType.System);
+        User.RefreshStatsInventory();
+    }
+    public void GainedCredit(S.GainedCredit p)
+    {
+        if (p.Credit == 0) return;
+
+        User.Credit += p.Credit;
+
+        ChatController.ReceiveChat(string.Format("You Gained {0:###,###,###} Credit.", p.Credit), ChatType.System);
+        User.RefreshStatsInventory();
+    }
+    public void LoseGold(S.LoseGold p)
+    {
+        User.Gold -= p.Gold;
+        ChatController.ReceiveChat(string.Format("You Used {0:###,###,###} Gold.", p.Gold), ChatType.System);
+        User.RefreshStatsInventory();
+    }
+    public void LoseCredit(S.LoseCredit p)
+    {
+        User.Credit -= p.Credit;
+        ChatController.ReceiveChat(string.Format("You Used {0:###,###,###} Credit.", p.Credit), ChatType.System);
+        User.RefreshStatsInventory();
+    }
     public void MoveItem(S.MoveItem p)
     {
         MirItemCell toCell, fromCell;

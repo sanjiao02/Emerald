@@ -384,6 +384,18 @@ namespace EmeraldNetwork
                 case (short)ServerPacketIds.GainedItem:
                     GainedItem((S.GainedItem)p);
                     break;
+                case (short)ServerPacketIds.GainedGold:
+                    GainedGold((S.GainedGold)p);
+                    break;
+                case (short)ServerPacketIds.GainedCredit:
+                    GainedCredit((S.GainedCredit)p);
+                    break;
+                case (short)ServerPacketIds.LoseGold:
+                    LoseGold((S.LoseGold)p);
+                    break;
+                case (short)ServerPacketIds.LoseCredit:
+                    LoseCredit((S.LoseCredit)p);
+                    break;
                 case (short)ServerPacketIds.MoveItem:
                     MoveItem((S.MoveItem)p);
                     break;
@@ -718,6 +730,22 @@ namespace EmeraldNetwork
         public static void GainedItem(S.GainedItem p)
         {
             GameManager.GameScene.GainedItem(p);
+        }
+        public static void GainedGold(S.GainedGold p)
+        {
+            GameManager.GameScene.GainedGold(p);
+        }
+        public static void GainedCredit(S.GainedCredit p)
+        {
+            GameManager.GameScene.GainedCredit(p);
+        }
+        public static void LoseGold(S.LoseGold p)
+        {
+            GameManager.GameScene.LoseGold(p);
+        }
+        public static void LoseCredit(S.LoseCredit p)
+        {
+            GameManager.GameScene.LoseCredit(p);
         }
         public static void MoveItem(S.MoveItem p)
         {
