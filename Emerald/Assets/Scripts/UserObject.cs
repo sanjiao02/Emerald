@@ -55,7 +55,31 @@ public class UserObject : MonoBehaviour
                   CurrentWearWeight, MaxWearWeight;
     public ushort CurrentBagWeight, MaxBagWeight;
 
-    public uint Gold, Credit;
+    private uint gold;
+    public uint Gold
+    {
+        get { return gold; }
+        set
+        {
+            if (value == gold) return;
+
+            gold = value;
+            GameScene.gold.text = string.Format("{0:###,###,###}", gold);
+        }
+    }
+
+    private uint credit;
+    public uint Credit
+    {
+        get { return credit; }
+        set
+        {
+            if (value == credit) return;
+
+            credit = value;
+            GameScene.gameGold.text = string.Format("{0:###,###,###}", credit);
+        }
+    }
 
     private long experience;
     public long Experience
@@ -175,13 +199,6 @@ public class UserObject : MonoBehaviour
         RefreshEquipmentStats();
 
         GameScene.RefreshStatsDisplay();
-        RefreshStatsInventory();
-    }
-    public void RefreshStatsInventory()
-    {
-        GameScene.bagWeight.text = "Weight:  " + CurrentBagWeight + "/" + MaxBagWeight;
-        GameScene.gold.text = string.Format("{0:###,###,###}", Gold);
-        GameScene.gameGold.text = string.Format("{0:###,###,###}", Credit);
     }
 
     private void RefreshLevelStats()
@@ -267,6 +284,8 @@ public class UserObject : MonoBehaviour
             if (item != null)
                 CurrentBagWeight = (ushort)Math.Min(ushort.MaxValue, CurrentBagWeight + item.Weight);
         }
+
+        GameScene.bagWeight.text = "Weight:  " + CurrentBagWeight + "/" + MaxBagWeight;
     }
 
     private void RefreshEquipmentStats()

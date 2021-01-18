@@ -322,31 +322,27 @@ public class GameSceneManager : MonoBehaviour
     {
         if (p.Gold == 0) return;
 
-        User.Gold += p.Gold;
+        User.Gold = User.Gold + p.Gold;
 
         ChatController.ReceiveChat(string.Format("You Gained {0:###,###,###} Gold.", p.Gold), ChatType.System);
-        User.RefreshStatsInventory();
     }
     public void GainedCredit(S.GainedCredit p)
     {
         if (p.Credit == 0) return;
 
-        User.Credit += p.Credit;
+        User.Credit = User.Credit + p.Credit;
 
         ChatController.ReceiveChat(string.Format("You Gained {0:###,###,###} Credit.", p.Credit), ChatType.System);
-        User.RefreshStatsInventory();
     }
     public void LoseGold(S.LoseGold p)
     {
-        User.Gold -= p.Gold;
+        User.Gold = User.Gold - p.Gold;
         ChatController.ReceiveChat(string.Format("You Used {0:###,###,###} Gold.", p.Gold), ChatType.System);
-        User.RefreshStatsInventory();
     }
     public void LoseCredit(S.LoseCredit p)
     {
-        User.Credit -= p.Credit;
+        User.Credit = User.Credit - p.Credit;
         ChatController.ReceiveChat(string.Format("You Used {0:###,###,###} Credit.", p.Credit), ChatType.System);
-        User.RefreshStatsInventory();
     }
     public void MoveItem(S.MoveItem p)
     {
