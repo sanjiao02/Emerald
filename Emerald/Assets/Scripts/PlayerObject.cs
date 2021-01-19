@@ -198,7 +198,9 @@ public class PlayerObject : MapObject
 
                     StartPosition = gameObject.transform.position;
                     TargetDistance = Vector3.Distance(transform.position, targetpos);
-                    IsMoving = true;                    
+                    IsMoving = true;
+
+                    GameManager.User.GetTerrainValues();
                     break;
             }
 

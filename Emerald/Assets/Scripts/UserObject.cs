@@ -12,6 +12,7 @@ public class UserObject : MonoBehaviour
 
     public PlayerObject Player;
     private Terrain currentTerrain;
+    private float[] terrainValues = new float[5];
     public BaseStats CoreStats = new BaseStats(0);
 
     public ushort Level;
@@ -438,20 +439,23 @@ public class UserObject : MonoBehaviour
         }*/
     }
 
-    public void PlayStepSound()
+    public void GetTerrainValues()
     {
         Vector2Int pos = ConvertPosition(Player.transform.position);
         if (pos == Vector2Int.zero) return;
 
-        float[] values = CheckTexture(pos);
+        terrainValues = CheckTexture(pos);
+    }
 
+    public void PlayStepSound()
+    {       
         bool female = false;
         if (female == false)
         {
-            for (int i = 0; i < values.Length; i++)
+            for (int i = 0; i < terrainValues.Length; i++)
             {
-                if (values[i] > 0)
-                    AudioSource.PlayClipAtPoint(currentTerrain.GetComponent<TerrainPlaylist>().TextureSounds[i * 2 + (int)Player.Gender], Player.transform.position, 0.25f);
+                if (terrainValues[i] > 0)
+                    AudioSource.PlayClipAtPoint(currentTerrain.GetComponent<TerrainPlaylist>().TextureSounds[i * 2 + (int)Player.Gender], Player.transform.position, 0.2f);
             }
         }
     }
@@ -473,7 +477,7 @@ public class UserObject : MonoBehaviour
 
     float[] CheckTexture(Vector2Int pos)
     {
-        float[] textureValues = new float[8];
+        float[] textureValues = new float[5];
 
         float[,,] aMap = currentTerrain.terrainData.GetAlphamaps(pos.x, pos.y, 1, 1);
         textureValues[0] = aMap[0, 0, 0];
