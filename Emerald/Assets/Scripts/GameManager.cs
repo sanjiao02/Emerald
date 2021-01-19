@@ -361,15 +361,15 @@ public class GameManager : MonoBehaviour
         GameObject model;
 
         if (p.Gold < 100)
-            model = Instantiate(GoldModels[0], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity) as GameObject;
+            model = Instantiate(GoldModels[0], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity);
         else if (p.Gold < 200)
-            model = Instantiate(GoldModels[1], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity) as GameObject;
+            model = Instantiate(GoldModels[1], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity);
         else if (p.Gold < 500)
-            model = Instantiate(GoldModels[2], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity) as GameObject;
+            model = Instantiate(GoldModels[2], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity);
         else if (p.Gold < 1000)
-            model = Instantiate(GoldModels[3], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity) as GameObject;
+            model = Instantiate(GoldModels[3], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity);
         else
-            model = Instantiate(GoldModels[4], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity) as GameObject;
+            model = Instantiate(GoldModels[4], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity);
 
         ItemObject gold = model.GetComponent<ItemObject>();
         gold.Name = string.Format("Gold ({0:###,###,###})", p.Gold);
