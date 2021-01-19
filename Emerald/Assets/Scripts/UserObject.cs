@@ -11,6 +11,7 @@ public class UserObject : MonoBehaviour
     }
 
     public PlayerObject Player;
+    private Terrain currentTerrain;
     public BaseStats CoreStats = new BaseStats(0);
 
     public ushort Level;
@@ -437,4 +438,81 @@ public class UserObject : MonoBehaviour
         }*/
     }
 
+    public void PlayStepSound()
+    {
+        Vector2Int pos = ConvertPosition(Player.transform.position);
+        if (pos == Vector2Int.zero) return;
+
+        float[] values = CheckTexture(pos);
+
+        bool female = false;
+        if (female == false)
+        {
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (values[i] > 0)
+                    AudioSource.PlayClipAtPoint(currentTerrain.GetComponent<TerrainPlaylist>().TextureSounds[i * 2 + (int)Player.Gender], Player.transform.position, 0.25f);
+            }
+        }
+    }
+
+    Vector2Int ConvertPosition(Vector3 playerPosition)
+    {
+        if (currentTerrain == null) return Vector2Int.zero;
+
+        Vector3 terrainPosition = playerPosition - currentTerrain.transform.position;
+        Vector3 mapPosition = new Vector3
+        (terrainPosition.x / currentTerrain.terrainData.size.x, 0,
+        terrainPosition.z / currentTerrain.terrainData.size.z);
+
+        float xCoord = mapPosition.x * currentTerrain.terrainData.alphamapWidth;
+        float zCoord = mapPosition.z * currentTerrain.terrainData.alphamapHeight;
+
+        return new Vector2Int((int)xCoord, (int)zCoord);
+    }
+
+    float[] CheckTexture(Vector2Int pos)
+    {
+        float[] textureValues = new float[8];
+
+        float[,,] aMap = currentTerrain.terrainData.GetAlphamaps(pos.x, pos.y, 1, 1);
+        textureValues[0] = aMap[0, 0, 0];
+        textureValues[1] = aMap[0, 0, 1];
+        textureValues[2] = aMap[0, 0, 2];
+        textureValues[3] = aMap[0, 0, 3];
+        textureValues[4] = aMap[0, 0, 4];
+
+        return textureValues;
+    }
+
+    public void GetClosestTerrain()
+    {
+        currentTerrain = null;
+
+        Vector3 playerPos = Player.transform.position;
+        Terrain[] terrains = Terrain.activeTerrains;
+
+        if (terrains.Length == 0)
+            return;
+
+        if (terrains.Length == 1)
+            return;
+
+        float lowDist = (terrains[0].GetPosition() - playerPos).sqrMagnitude;
+        var terrainIndex = 0;
+
+        for (int i = 1; i < terrains.Length; i++)
+        {
+            Terrain terrain = terrains[i];
+            Vector3 terrainPos = terrain.GetPosition();
+
+            var dist = (terrainPos - playerPos).sqrMagnitude;
+            if (dist < lowDist)
+            {
+                lowDist = dist;
+                terrainIndex = i;
+            }
+        }
+        currentTerrain = terrains[terrainIndex];
+    }
 }

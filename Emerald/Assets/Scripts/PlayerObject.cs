@@ -250,5 +250,12 @@ public class PlayerObject : MapObject
             }
         }        
         GetComponentInChildren<Animator>()?.SetInteger("CurrentAction", (int)CurrentAction);
-    }    
+    }
+
+    public void PlayStepSound()
+    {
+        if (this == GameManager.User.Player)
+            GameManager.User.PlayStepSound();
+
+    }
 }
