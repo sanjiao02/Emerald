@@ -480,11 +480,9 @@ public class UserObject : MonoBehaviour
         float[] textureValues = new float[5];
 
         float[,,] aMap = currentTerrain.terrainData.GetAlphamaps(pos.x, pos.y, 1, 1);
-        textureValues[0] = aMap[0, 0, 0];
-        textureValues[1] = aMap[0, 0, 1];
-        textureValues[2] = aMap[0, 0, 2];
-        textureValues[3] = aMap[0, 0, 3];
-        textureValues[4] = aMap[0, 0, 4];
+
+        for (int i = 0; i < currentTerrain.terrainData.terrainLayers.Length; i++)
+            textureValues[i] = aMap[0, 0, i];
 
         return textureValues;
     }
