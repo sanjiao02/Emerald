@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> MonsterModels;
     public List<GameObject> NPCModels;
+    public List<GameObject> GoldModels;
 
     private static MirDirection MouseDirection;
     private static float MouseDistance;
@@ -355,6 +356,28 @@ public class GameManager : MonoBehaviour
         CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(npc);
         ObjectList.Add(p.ObjectID, npc);
     }
+    public void ObjectGold(S.ObjectGold p)
+    {
+        GameObject model;
+
+        if (p.Gold < 100)
+            model = Instantiate(GoldModels[0], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity);
+        else if (p.Gold < 200)
+            model = Instantiate(GoldModels[1], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity);
+        else if (p.Gold < 500)
+            model = Instantiate(GoldModels[2], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity);
+        else if (p.Gold < 1000)
+            model = Instantiate(GoldModels[3], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity);
+        else
+            model = Instantiate(GoldModels[4], CurrentScene.Cells[p.Location.X, p.Location.Y].position, Quaternion.identity);
+
+        ItemObject gold = model.GetComponent<ItemObject>();
+        gold.Name = string.Format("Gold ({0:###,###,###})", p.Gold);
+        gold.ObjectID = p.ObjectID;
+        CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(gold);
+        ObjectList.Add(p.ObjectID, gold);
+    }
+
 
     public void ObjectItem(S.ObjectItem p)
     {

@@ -339,6 +339,9 @@ namespace EmeraldNetwork
                 case (short)ServerPacketIds.ObjectItem:
                     ObjectItem((S.ObjectItem)p);
                     break;
+                case (short)ServerPacketIds.ObjectGold:
+                    ObjectGold((S.ObjectGold)p);
+                    break;
                 case (short)ServerPacketIds.ObjectRemove:
                     ObjectRemove((S.ObjectRemove)p);
                     break;
@@ -670,6 +673,10 @@ namespace EmeraldNetwork
         public static void ObjectItem(S.ObjectItem p)
         {
             gameManager.ObjectItem(p);
+        }
+        public static void ObjectGold(S.ObjectGold p)
+        {
+            gameManager.ObjectGold(p);
         }
         public static void ObjectRemove(S.ObjectRemove p)
         {
