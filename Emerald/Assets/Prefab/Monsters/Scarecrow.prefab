@@ -58,7 +58,6 @@ GameObject:
   - component: {fileID: 2501183261175379696}
   - component: {fileID: 6654829451731991225}
   - component: {fileID: 4082145051391901358}
-  - component: {fileID: -7239034027258457792}
   m_Layer: 9
   m_Name: Scarecrow
   m_TagString: Untagged
@@ -136,22 +135,6 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.98, z: 0}
---- !u!54 &-7239034027258457792
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3025904653065956426}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
 --- !u!1001 &2176342654167866605
 PrefabInstance:
   m_ObjectHideFlags: 0
