@@ -198,7 +198,9 @@ public class PlayerObject : MapObject
 
                     StartPosition = gameObject.transform.position;
                     TargetDistance = Vector3.Distance(transform.position, targetpos);
-                    IsMoving = true;                    
+                    IsMoving = true;
+
+                    GameManager.User.GetTerrainValues();
                     break;
             }
 
@@ -250,5 +252,12 @@ public class PlayerObject : MapObject
             }
         }        
         GetComponentInChildren<Animator>()?.SetInteger("CurrentAction", (int)CurrentAction);
-    }    
+    }
+
+    public void PlayStepSound()
+    {
+        if (this == GameManager.User.Player)
+            GameManager.User.PlayStepSound();
+
+    }
 }
