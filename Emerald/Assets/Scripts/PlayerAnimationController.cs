@@ -16,4 +16,9 @@ public class PlayerAnimationController : MonoBehaviour
     {
         ParentObject?.StruckEnd();
     }
+
+    void PlayStepSound()
+    {
+        ParentObject?.PlayStepSound();
+    }
 }
