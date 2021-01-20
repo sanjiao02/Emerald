@@ -27,7 +27,21 @@ public class MapObject : MonoBehaviour
     public string Name;
     public int Light;
     [HideInInspector]
-    public bool Dead;
+
+    private bool dead;
+    public bool Dead
+    {
+        get { return dead; }
+        set
+        {
+            if (dead == value) return;
+
+            dead = value;
+
+            if (dead)
+                gameObject.layer = 0;
+        }
+    }
 
     public bool Blocking = true;
 
@@ -134,12 +148,14 @@ public class MapObject : MonoBehaviour
     {
         ObjectRenderer.materials[1].SetFloat("_ASEOutlineWidth", OutlineWidth);
         ObjectRenderer.materials[1].SetColor("_ASEOutlineColor", Color.red);
+        NameLabel.gameObject.SetActive(true);
     }
 
     public virtual void OnDeSelect()
     {
         ObjectRenderer.materials[1].SetFloat("_ASEOutlineWidth", 0);
         ObjectRenderer.materials[1].SetColor("_ASEOutlineColor", Color.clear);
+        NameLabel.gameObject.SetActive(false);
     }
 
     public void StruckEnd()

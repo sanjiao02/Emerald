@@ -12,16 +12,4 @@ public class ItemObject : MapObject
         Blocking = false;
         NameLabel.gameObject.SetActive(false);
     }
-
-    public override void OnSelect()
-    {
-        base.OnSelect();
-        NameLabel.gameObject.SetActive(true);
-    }
-
-    public override void OnDeSelect()
-    {
-        base.OnDeSelect();
-        NameLabel.gameObject.SetActive(false);
-    }
 }
