@@ -2591,7 +2591,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Microsoft YaHei SDF Material
   m_Shader: {fileID: 4800000, guid: dd89cf5b9246416f84610a006f916af7, type: 3}
-  m_ShaderKeywords: UNDERLAY_ON
+  m_ShaderKeywords: BEVEL_ON UNDERLAY_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -2636,9 +2636,9 @@ Material:
     - _FaceShininess: 0
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
-    - _GlowInner: 0.021
+    - _GlowInner: 0.5
     - _GlowOffset: 0
-    - _GlowOuter: 0.316
+    - _GlowOuter: 0.5
     - _GlowPower: 0.75
     - _GradientScale: 13
     - _LightAngle: 3.1416
@@ -2653,7 +2653,7 @@ Material:
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9230769
     - _ScaleRatioB: 0.6923077
-    - _ScaleRatioC: 0.5325444
+    - _ScaleRatioC: 0.6020067
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -2666,10 +2666,10 @@ Material:
     - _StencilWriteMask: 255
     - _TextureHeight: 512
     - _TextureWidth: 512
-    - _UnderlayDilate: 1
+    - _UnderlayDilate: 0.8
     - _UnderlayOffsetX: 0
     - _UnderlayOffsetY: 0
-    - _UnderlaySoftness: 0.3
+    - _UnderlaySoftness: 0.35
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 1
@@ -2677,10 +2677,10 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 0.3137255, g: 0.69411767, b: 0.9882353, a: 1}
-    - _GlowColor: {r: 1, g: 0.61900264, b: 0, a: 0.5}
+    - _FaceColor: {r: 0.42114633, g: 0.9811321, b: 0.43259197, a: 1}
+    - _GlowColor: {r: 1, g: 0, b: 0, a: 1}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 1}

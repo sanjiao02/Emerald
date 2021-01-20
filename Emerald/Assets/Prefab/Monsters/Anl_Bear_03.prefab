@@ -3480,7 +3480,7 @@ GameObject:
   m_Layer: 0
   m_Name: Anl_Bear_03
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3516,9 +3516,11 @@ MonoBehaviour:
   NameLabelObject: {fileID: 8972585348359723467, guid: fb59f2525fca14345afceae9453fb40a,
     type: 3}
   NameLocation: {fileID: 2215648101368759356}
+  HealthBar: {fileID: 0}
   NameLabel: {fileID: 177940762220530538, guid: fb59f2525fca14345afceae9453fb40a,
     type: 3}
   Model: {fileID: 3866362151738514288, guid: b7fc2282288280a4d9710b3801b2662e, type: 3}
+  Parent: {fileID: 0}
   MoveSpeed: 1.2
   OutlineWidth: 0.03
   Name: 
