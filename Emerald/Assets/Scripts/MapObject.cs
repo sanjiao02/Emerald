@@ -162,4 +162,9 @@ public class MapObject : MonoBehaviour
     {
         GetComponentInChildren<Animator>()?.SetBool("Struck", false);
     }
+
+    public void DieEnd()
+    {
+        CurrentAction = MirAction.Dead;
+    }
 }

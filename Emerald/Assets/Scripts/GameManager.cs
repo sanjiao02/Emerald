@@ -307,7 +307,6 @@ public class GameManager : MonoBehaviour
             monster.gameObject.SetActive(true);
             monster.Dead = p.Dead;
             monster.Blocking = !p.Dead;
-
             return;
         }
 

@@ -21,4 +21,9 @@ public class MonsterAnimationController : MonoBehaviour
     {
         parentObject?.StruckEnd();
     }
+
+    void DieEnd()
+    {
+        parentObject?.DieEnd();
+    }
 }
