@@ -9,6 +9,7 @@ public class ChatController : MonoBehaviour
     public GameObject ChatPanel;
     public List<ChatMessage> chatMessages = new List<ChatMessage>();
     public GameObject TextObject;
+    public string cmClour;
 
     private bool[] Filter = new bool[Enum.GetNames(typeof(ChatFilterType)).Length];
 
@@ -23,9 +24,9 @@ public class ChatController : MonoBehaviour
     public void ReceiveChat(string text, ChatType type)
     {
         if (Filtered(type)) return;
-
+        FilterColour(type);
         ChatMessageBody cm = new ChatMessageBody();
-        cm.text = text;
+        cm.text = "<color=#"+cmClour+">" + text + "</color>";
         cm.type = type;
 
         ChatMessage newText = Instantiate(TextObject, ChatPanel.transform).GetComponent<ChatMessage>();
@@ -42,6 +43,7 @@ public class ChatController : MonoBehaviour
 
     bool Filtered(ChatType type)
     {
+       
         switch (type)
         {
             case ChatType.Announcement:
@@ -76,4 +78,35 @@ public class ChatController : MonoBehaviour
         Filter[type] = !Filter[type];
         FilterObjects[type].SetActive(Filter[type]);
     }
+    public string FilterColour(ChatType type)
+    {
+        
+        switch (type)
+        {
+            case ChatType.Announcement:
+                return  cmClour = "9C5100";
+            case ChatType.Normal:
+                return cmClour = "FFFFFF";
+            case ChatType.Shout:
+            case ChatType.Shout2:
+            case ChatType.Shout3:
+                return cmClour = "B54549";
+            case ChatType.Group:
+                return cmClour = "00199C";
+            case ChatType.Guild:
+                return cmClour = "9C002F"; 
+            case ChatType.WhisperIn:
+            case ChatType.WhisperOut:
+                return cmClour = "9144B5";
+            case ChatType.System:
+            case ChatType.System2:
+            case ChatType.Trainer:
+            case ChatType.LevelUp:
+            case ChatType.Hint:
+                return cmClour = "9B9C00"; ;
+        }
+
+        return cmClour = "FFFFFF"; 
+    }
+
 }
