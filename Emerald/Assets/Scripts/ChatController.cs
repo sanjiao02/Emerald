@@ -9,7 +9,7 @@ public class ChatController : MonoBehaviour
     public GameObject ChatPanel;
     public List<ChatMessage> chatMessages = new List<ChatMessage>();
     public GameObject TextObject;
-    public string cmClour;
+    public string ChatMessageColour;
 
     private bool[] Filter = new bool[Enum.GetNames(typeof(ChatFilterType)).Length];
 
@@ -26,7 +26,7 @@ public class ChatController : MonoBehaviour
         if (Filtered(type)) return;
         FilterColour(type);
         ChatMessageBody cm = new ChatMessageBody();
-        cm.text = "<color=#"+cmClour+">" + text + "</color>";
+        cm.text = "<color=#"+ ChatMessageColour + ">" + text + "</color>";
         cm.type = type;
 
         ChatMessage newText = Instantiate(TextObject, ChatPanel.transform).GetComponent<ChatMessage>();
@@ -80,33 +80,33 @@ public class ChatController : MonoBehaviour
     }
     public string FilterColour(ChatType type)
     {
-        
+       
         switch (type)
         {
             case ChatType.Announcement:
-                return  cmClour = "9C5100";
+                return ChatMessageColour = "9C5100";
             case ChatType.Normal:
-                return cmClour = "FFFFFF";
+                return ChatMessageColour = "FFFFFF";
             case ChatType.Shout:
             case ChatType.Shout2:
             case ChatType.Shout3:
-                return cmClour = "B54549";
+                return ChatMessageColour = "B54549";
             case ChatType.Group:
-                return cmClour = "00199C";
+                return ChatMessageColour = "2F5F36";
             case ChatType.Guild:
-                return cmClour = "9C002F"; 
+                return ChatMessageColour = "1E5667"; 
             case ChatType.WhisperIn:
             case ChatType.WhisperOut:
-                return cmClour = "9144B5";
+                return ChatMessageColour = "9144B5";
             case ChatType.System:
             case ChatType.System2:
             case ChatType.Trainer:
             case ChatType.LevelUp:
             case ChatType.Hint:
-                return cmClour = "9B9C00"; ;
+                return ChatMessageColour = "9B9C00"; ;
         }
 
-        return cmClour = "FFFFFF"; 
+        return ChatMessageColour = "FFFFFF"; 
     }
 
 }
