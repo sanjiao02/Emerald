@@ -32,6 +32,9 @@ public class GameSceneManager : MonoBehaviour
     public TMP_Text CharacterLevel;
     public Image CharacterIcon;
     public Sprite[] CharacterIcons = new Sprite[Enum.GetNames(typeof(MirClass)).Length * Enum.GetNames(typeof(MirGender)).Length];
+    public Image ClassInsignia;
+    public Sprite[] ClassInsigniaIcons = new Sprite[Enum.GetNames(typeof(MirClass)).Length];
+
     public Button AttackModeButton;
     public TMP_Text AttackModeText;
     public Sprite[] AttackModeIcons = new Sprite[Enum.GetNames(typeof(AttackMode)).Length];
@@ -508,6 +511,7 @@ public class GameSceneManager : MonoBehaviour
     public void UpdateCharacterIcon()
     {
         CharacterIcon.sprite = CharacterIcons[(int)GameManager.User.Player.Class * 2 + (int)GameManager.User.Player.Gender];
+        ClassInsignia.sprite = ClassInsigniaIcons[(int)GameManager.User.Player.Class];
         CharacterName.text = GameManager.User.Player.Name;
         CharacterLevel.text = GameManager.User.Level.ToString();
     }

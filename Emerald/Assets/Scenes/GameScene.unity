@@ -14438,6 +14438,13 @@ MonoBehaviour:
   - {fileID: -5501930602351751666, guid: 828d9daf1ead57a42b64b379b90b3e8a, type: 3}
   - {fileID: 1303383331040259379, guid: 828d9daf1ead57a42b64b379b90b3e8a, type: 3}
   - {fileID: -4314589946221581978, guid: 828d9daf1ead57a42b64b379b90b3e8a, type: 3}
+  ClassInsignia: {fileID: 405716346}
+  ClassInsigniaIcons:
+  - {fileID: -1960928596365363549, guid: 828d9daf1ead57a42b64b379b90b3e8a, type: 3}
+  - {fileID: -8912928920784761947, guid: 8d70990703e0b4a45bbd867dc02f7747, type: 3}
+  - {fileID: -5247065143563382466, guid: 8d70990703e0b4a45bbd867dc02f7747, type: 3}
+  - {fileID: -4325592411155476886, guid: f40ef64bfcbb56746bc3dea2883b1983, type: 3}
+  - {fileID: 1827678810226951638, guid: f40ef64bfcbb56746bc3dea2883b1983, type: 3}
   AttackModeButton: {fileID: 418295350}
   AttackModeText: {fileID: 1739165775}
   AttackModeIcons:
@@ -25248,6 +25255,7 @@ MonoBehaviour:
   chatMessages: []
   TextObject: {fileID: 3777351459069033553, guid: 4a726c85dd5a9ec46ba0d7bb55a3b3c0,
     type: 3}
+  cmClour: 
   FilterObjects:
   - {fileID: 338671841}
   - {fileID: 2082012764}
