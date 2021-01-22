@@ -259,7 +259,7 @@ public class PlayerObject : MapObject
 
     private void RefreshSounds()
     {
-        int layerMask = 1 << 0;
+        int layerMask = 1;
         RaycastHit hit;
 
         if (!Physics.Raycast(HeadBone.transform.position, Vector3.down, out hit, Mathf.Infinity, layerMask)) return;
