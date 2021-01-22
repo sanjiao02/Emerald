@@ -11,9 +11,9 @@ public class UserObject : MonoBehaviour
     }
 
     public PlayerObject Player;
-    private Terrain currentTerrain;
-    private float[] terrainValues = new float[5];
     public BaseStats CoreStats = new BaseStats(0);
+
+    private List<AudioClip> FootstepSounds = new List<AudioClip>();
 
     public ushort Level;
 
@@ -439,82 +439,50 @@ public class UserObject : MonoBehaviour
         }*/
     }
 
-    public void GetTerrainValues()
+    public void GetTerrainSounds(Terrain terrain, Vector3 pos)
     {
-        Vector2Int pos = ConvertPosition(Player.transform.position);
-        if (pos == Vector2Int.zero) return;
+        FootstepSounds.Clear();
 
-        terrainValues = CheckTexture(pos);
-    }
+        Vector2Int tpos = ConvertPosition(terrain, pos);
+        if (tpos == Vector2Int.zero) return;
 
-    public void PlayStepSound()
-    {       
-        bool female = false;
-        if (female == false)
+        float[] terrainValues = CheckTexture(terrain, tpos);
+
+        for (int i = 0; i < terrainValues.Length; i++)
         {
-            for (int i = 0; i < terrainValues.Length; i++)
-            {
-                if (terrainValues[i] > 0)
-                    AudioSource.PlayClipAtPoint(currentTerrain.GetComponent<TerrainPlaylist>().TextureSounds[i * 2 + (int)Player.Gender], Player.transform.position, 0.2f);
-            }
+            if (terrainValues[i] > 0)
+                FootstepSounds.Add(terrain.GetComponent<TerrainPlaylist>().TextureSounds[i * 2 + (int)Player.Gender]);
         }
     }
 
-    Vector2Int ConvertPosition(Vector3 playerPosition)
+    public void PlayStepSound()
     {
-        if (currentTerrain == null) return Vector2Int.zero;
+        foreach (AudioClip clip in FootstepSounds)
+            AudioSource.PlayClipAtPoint(clip, Player.transform.position, 0.2f);
+    }
 
-        Vector3 terrainPosition = playerPosition - currentTerrain.transform.position;
-        Vector3 mapPosition = new Vector3
-        (terrainPosition.x / currentTerrain.terrainData.size.x, 0,
-        terrainPosition.z / currentTerrain.terrainData.size.z);
+    Vector2Int ConvertPosition(Terrain terrain, Vector3 playerPosition)
+    {
+        if (terrain == null) return Vector2Int.zero;
 
-        float xCoord = mapPosition.x * currentTerrain.terrainData.alphamapWidth;
-        float zCoord = mapPosition.z * currentTerrain.terrainData.alphamapHeight;
+        Vector3 terrainPosition = playerPosition - terrain.transform.position;
+        Vector3 mapPosition = new Vector3(terrainPosition.x / terrain.terrainData.size.x, 0, terrainPosition.z / terrain.terrainData.size.z);
+
+        float xCoord = mapPosition.x * terrain.terrainData.alphamapWidth;
+        float zCoord = mapPosition.z * terrain.terrainData.alphamapHeight;
 
         return new Vector2Int((int)xCoord, (int)zCoord);
     }
 
-    float[] CheckTexture(Vector2Int pos)
+    float[] CheckTexture(Terrain terrain, Vector2Int pos)
     {
         float[] textureValues = new float[5];
 
-        float[,,] aMap = currentTerrain.terrainData.GetAlphamaps(pos.x, pos.y, 1, 1);
+        float[,,] aMap = terrain.terrainData.GetAlphamaps(pos.x, pos.y, 1, 1);
 
-        for (int i = 0; i < currentTerrain.terrainData.terrainLayers.Length; i++)
+        for (int i = 0; i < terrain.terrainData.terrainLayers.Length; i++)
             textureValues[i] = aMap[0, 0, i];
 
         return textureValues;
-    }
-
-    public void GetClosestTerrain()
-    {
-        currentTerrain = null;
-
-        Vector3 playerPos = Player.transform.position;
-        Terrain[] terrains = Terrain.activeTerrains;
-
-        if (terrains.Length == 0)
-            return;
-
-        if (terrains.Length == 1)
-            return;
-
-        float lowDist = (terrains[0].GetPosition() - playerPos).sqrMagnitude;
-        var terrainIndex = 0;
-
-        for (int i = 1; i < terrains.Length; i++)
-        {
-            Terrain terrain = terrains[i];
-            Vector3 terrainPos = terrain.GetPosition();
-
-            var dist = (terrainPos - playerPos).sqrMagnitude;
-            if (dist < lowDist)
-            {
-                lowDist = dist;
-                terrainIndex = i;
-            }
-        }
-        currentTerrain = terrains[terrainIndex];
     }
 }

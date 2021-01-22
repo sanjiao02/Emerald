@@ -117,7 +117,6 @@ public class GameManager : MonoBehaviour
 
         User.Player.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);        
         UserGameObject.transform.position = CurrentScene.Cells[User.Player.CurrentLocation.x, User.Player.CurrentLocation.y].position;
-        User.GetClosestTerrain();
         User.Player.Direction = p.Direction;
         User.Player.Model.transform.rotation = ClientFunctions.GetRotation(User.Player.Direction);
 
@@ -182,7 +181,6 @@ public class GameManager : MonoBehaviour
                 CurrentScene.LoadMap(p.FileName);
             Network.Enqueue(new C.MapChanged { });
             UserGameObject.transform.position = CurrentScene.Cells[User.Player.CurrentLocation.x, User.Player.CurrentLocation.y].position;
-            User.GetClosestTerrain();
         }                          
     }
 

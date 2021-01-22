@@ -200,7 +200,7 @@ public class PlayerObject : MapObject
                     TargetDistance = Vector3.Distance(transform.position, targetpos);
                     IsMoving = true;
 
-                    GameManager.User.GetTerrainValues();
+                    RefreshSounds();
                     break;
             }
 
@@ -252,6 +252,21 @@ public class PlayerObject : MapObject
             }
         }        
         GetComponentInChildren<Animator>()?.SetInteger("CurrentAction", (int)CurrentAction);
+    }
+
+    private void RefreshSounds()
+    {
+        int layerMask = 1 << 0;
+        RaycastHit hit;
+
+        if (!Physics.Raycast(HeadBone.transform.position, Vector3.down, out hit, Mathf.Infinity, layerMask)) return;
+
+        if (hit.transform.gameObject.GetComponent<TerrainCollider>() != null)
+            GameManager.User.GetTerrainSounds(hit.transform.gameObject.GetComponent<Terrain>(), hit.point);
+        else
+        {
+            //We are stood on a mesh
+        }
     }
 
     public void PlayStepSound()
