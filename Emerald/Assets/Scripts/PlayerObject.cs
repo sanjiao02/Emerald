@@ -117,10 +117,13 @@ public class PlayerObject : MapObject
     }
 
     public override void Start()
-    {        
+    {
         base.Start();
         ObjectRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        HealthBar = Instantiate(GameScene.GreenHealthBar, NameLabel.transform).GetComponent<Renderer>();
+
+        if (GameManager.gameStage == GameStage.Game)
+            HealthBar = Instantiate(GameScene.GreenHealthBar, NameLabel.transform).GetComponent<Renderer>();
+
         ChatLabel = Instantiate(ChatLabelObject, ChatLocation.position, Quaternion.identity, gameObject.transform).GetComponent<TMP_Text>();
     }
 

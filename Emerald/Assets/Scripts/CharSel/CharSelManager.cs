@@ -60,7 +60,6 @@ public class CharSelManager : MonoBehaviour
             player.Weapon = value.Weapon;            
             player.Armour = value.Armour;
 
-            PlayerModel.GetComponentInChildren<Rigidbody>().useGravity = false;
             PlayerModel.GetComponentInChildren<DragRotate>().enabled = true;
         }
     }
