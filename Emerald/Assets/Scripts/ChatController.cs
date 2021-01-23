@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ChatController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ChatController : MonoBehaviour
     public List<ChatMessage> chatMessages = new List<ChatMessage>();
     public GameObject TextObject;
     public string ChatMessageColour;
+    public TMP_Text MainEventChatLabel;
+    private float MainEventChatTime;
 
     private bool[] Filter = new bool[Enum.GetNames(typeof(ChatFilterType)).Length];
 
@@ -20,11 +23,19 @@ public class ChatController : MonoBehaviour
         for (int i = 0; i < Filter.Length; i++)
             Filter[i] = true;
     }
+    void Update()
+    {
+        if (MainEventChatLabel.text != string.Empty && Time.time > MainEventChatTime)
+        {
+            MainEventChatLabel.SetText(string.Empty);
+        }
 
+    }
     public void ReceiveChat(string text, ChatType type)
     {
         if (Filtered(type)) return;
         FilterColour(type);
+        MainEventChat(text, type);
         ChatMessageBody cm = new ChatMessageBody();
         cm.text = "<color=#"+ ChatMessageColour + ">" + text + "</color>";
         cm.type = type;
@@ -40,6 +51,20 @@ public class ChatController : MonoBehaviour
             chatMessages.RemoveAt(0);
         }
     }
+    public void MainEventChat(string text, ChatType type)
+    {
+        ChatMessageBody cm = new ChatMessageBody();
+        cm.text = "<color=#" + ChatMessageColour + ">" + text + "</color>";
+        cm.type = type;
+        if (cm.type == ChatType.Announcement)
+        {
+            MainEventChatLabel.text = cm.text;
+            MainEventChatTime = Time.time + 5;
+
+        }
+
+    }
+
 
     bool Filtered(ChatType type)
     {
