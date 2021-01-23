@@ -84,26 +84,26 @@ public class ChatController : MonoBehaviour
         switch (type)
         {
             case ChatType.Announcement:
-                return ChatMessageColour = "9C5100";
+                return ChatMessageColour = "f49a9c";
             case ChatType.Normal:
-                return ChatMessageColour = "FFFFFF";
+                return ChatMessageColour = "F3F3F3";
             case ChatType.Shout:
             case ChatType.Shout2:
             case ChatType.Shout3:
-                return ChatMessageColour = "B54549";
+                return ChatMessageColour = "C18140";
             case ChatType.Group:
-                return ChatMessageColour = "2F5F36";
+                return ChatMessageColour = "8be89b";
             case ChatType.Guild:
-                return ChatMessageColour = "1E5667"; 
+                return ChatMessageColour = "91d5ec"; 
             case ChatType.WhisperIn:
             case ChatType.WhisperOut:
-                return ChatMessageColour = "9144B5";
+                return ChatMessageColour = "f29ceb";
             case ChatType.System:
             case ChatType.System2:
             case ChatType.Trainer:
             case ChatType.LevelUp:
             case ChatType.Hint:
-                return ChatMessageColour = "9B9C00"; ;
+                return ChatMessageColour = "EFE895"; ;
         }
 
         return ChatMessageColour = "FFFFFF"; 
