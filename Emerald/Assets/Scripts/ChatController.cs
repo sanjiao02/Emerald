@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ChatController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ChatController : MonoBehaviour
     public List<ChatMessage> chatMessages = new List<ChatMessage>();
     public GameObject TextObject;
     public string ChatMessageColour;
+    public TMP_Text MainEventChatLabel;
+    private float MainEventChatTime;
 
     private bool[] Filter = new bool[Enum.GetNames(typeof(ChatFilterType)).Length];
 
@@ -20,7 +23,14 @@ public class ChatController : MonoBehaviour
         for (int i = 0; i < Filter.Length; i++)
             Filter[i] = true;
     }
+    void Update()
+    {
+        if (MainEventChatLabel.text != string.Empty && Time.time > MainEventChatTime)
+        {
+            MainEventChatLabel.SetText(string.Empty);
+        }
 
+    }
     public void ReceiveChat(string text, ChatType type)
     {
         if (Filtered(type)) return;
@@ -38,8 +48,16 @@ public class ChatController : MonoBehaviour
         {
             Destroy(chatMessages[0].gameObject);
             chatMessages.RemoveAt(0);
+        }  
+        if (cm.type == ChatType.Announcement)
+        {
+            MainEventChatLabel.text = cm.text;
+            MainEventChatTime = Time.time + 5;
+
         }
+
     }
+
 
     bool Filtered(ChatType type)
     {
@@ -84,13 +102,13 @@ public class ChatController : MonoBehaviour
         switch (type)
         {
             case ChatType.Announcement:
-                return ChatMessageColour = "f49a9c";
+                return ChatMessageColour = "C18140";
             case ChatType.Normal:
                 return ChatMessageColour = "F3F3F3";
             case ChatType.Shout:
             case ChatType.Shout2:
             case ChatType.Shout3:
-                return ChatMessageColour = "C18140";
+                return ChatMessageColour = "f49a9c";
             case ChatType.Group:
                 return ChatMessageColour = "8be89b";
             case ChatType.Guild:
