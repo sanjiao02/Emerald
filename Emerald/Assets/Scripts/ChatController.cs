@@ -102,13 +102,13 @@ public class ChatController : MonoBehaviour
         switch (type)
         {
             case ChatType.Announcement:
-                return ChatMessageColour = "f49a9c";
+                return ChatMessageColour = "C18140";
             case ChatType.Normal:
                 return ChatMessageColour = "F3F3F3";
             case ChatType.Shout:
             case ChatType.Shout2:
             case ChatType.Shout3:
-                return ChatMessageColour = "C18140";
+                return ChatMessageColour = "f49a9c";
             case ChatType.Group:
                 return ChatMessageColour = "8be89b";
             case ChatType.Guild:
