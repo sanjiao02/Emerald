@@ -35,7 +35,6 @@ public class ChatController : MonoBehaviour
     {
         if (Filtered(type)) return;
         FilterColour(type);
-        MainEventChat(text, type);
         ChatMessageBody cm = new ChatMessageBody();
         cm.text = "<color=#"+ ChatMessageColour + ">" + text + "</color>";
         cm.type = type;
@@ -49,13 +48,7 @@ public class ChatController : MonoBehaviour
         {
             Destroy(chatMessages[0].gameObject);
             chatMessages.RemoveAt(0);
-        }
-    }
-    public void MainEventChat(string text, ChatType type)
-    {
-        ChatMessageBody cm = new ChatMessageBody();
-        cm.text = "<color=#" + ChatMessageColour + ">" + text + "</color>";
-        cm.type = type;
+        }  
         if (cm.type == ChatType.Announcement)
         {
             MainEventChatLabel.text = cm.text;
