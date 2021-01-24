@@ -6,9 +6,29 @@ public class NewCharacterAnimationManager : MonoBehaviour
 {
     public static int IdleCount;
 
+    public List<AudioClip> clips = new List<AudioClip>();
+
     public void Activate()
     {
-       gameObject.GetComponent<AudioSource>().Play();
+        if (gameObject.GetComponent<Animator>().GetBool("selected"))
+            PlayClip(0);            
+    }
+
+    public void PlayClip(int index)
+    {
+        gameObject.GetComponent<AudioSource>().PlayOneShot(clips[index]);
+    }
+
+    public void SecondSound()
+    {
+        if (gameObject.GetComponent<Animator>().GetBool("selected"))
+            PlayClip(1);
+    }
+
+    public void ThirdSound()
+    {
+        if (gameObject.GetComponent<Animator>().GetBool("selected"))
+            PlayClip(2);
     }
 
     public void IncreaseCount()

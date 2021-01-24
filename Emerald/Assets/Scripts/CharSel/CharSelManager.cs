@@ -165,14 +165,14 @@ public class CharSelManager : MonoBehaviour
     {
         if (selectedModel != null)
         {
-            selectedModel.transform.SetPositionAndRotation(inactiveLocation.transform.position, inactiveLocation.transform.rotation);
+            selectedModel.transform.SetParent(inactiveLocation.transform, false);
             selectedModel.GetComponent<Animator>().SetBool("selected", false);
             selectedModel.GetComponent<Animator>().SetBool("bored", false);
             selectedModel.GetComponent<AudioSource>().Stop();
         }
 
         selectedModel = NewCharacterModels[(byte)selectedClass * 2 + (byte)selectedGender];
-        selectedModel.transform.SetPositionAndRotation(activeLocation.transform.position, activeLocation.transform.rotation);
+        selectedModel.transform.SetParent(activeLocation.transform, false);
         selectedModel.GetComponent<Animator>().SetBool("bored", false);
         selectedModel.GetComponent<Animator>().SetBool("selected", true); 
     }
