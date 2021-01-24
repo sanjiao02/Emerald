@@ -27,13 +27,9 @@ public class CharSelManager : MonoBehaviour
     public GameObject[] NewCharacterModels = new GameObject[Enum.GetNames(typeof(MirClass)).Length * Enum.GetNames(typeof(MirGender)).Length];
     public MirButton DeleteButton;
     public MirButton LogOutButton;
-    public TMP_InputField NameInput;
+    public TMP_InputField NameInput;    
 
-    public GameObject HairImagePrefab;
-    public GameObject HairGrid;
-    private List<GameObject> hairImages = new List<GameObject>(); 
-    public List<Sprite> WarriorHairImages = new List<Sprite>();
-    public List<Sprite> WarriorFaceImages = new List<Sprite>();
+    public PlayerCustomizeManager playerCustomizeManager;    
 
     //Windows
     public GameObject SelectCharacterBox;
@@ -77,7 +73,6 @@ public class CharSelManager : MonoBehaviour
     private GameObject activeLocation;
     private GameObject inactiveLocation;
     private GameObject previewLocation;
-    private int selectedHair;
 
     void Awake()
     {        
@@ -124,31 +119,7 @@ public class CharSelManager : MonoBehaviour
         NewCharacterBox.SetActive(false);
         CustomizeBox.SetActive(true);
 
-        for (int i = 0; i < hairImages.Count; i++)
-            Destroy(hairImages[i]);
-        hairImages.Clear();
-
-        switch (selectedClass)
-        {
-            case MirClass.Warrior:
-                for (int i = (int)selectedGender; i < WarriorHairImages.Count; i+=2)
-                {
-                    GameObject prefab = Instantiate(HairImagePrefab, HairGrid.transform, false);
-                    prefab.GetComponent<Image>().sprite = WarriorHairImages[i];
-                    int x = new int();
-                    x = i / 2;
-                    prefab.GetComponent<HairImageInfo>().Index = x;
-                    prefab.GetComponent<Button>().onClick.AddListener(() => HairImage_onClick(x));
-                    hairImages.Add(prefab);
-                }
-                break;
-        }
-    }
-
-    void HairImage_onClick(int index)
-    {
-        selectedHair = index;
-        Debug.Log("Hair: " + index);
+        playerCustomizeManager.Refresh(selectedClass, selectedGender);        
     }
 
     public void Return_Click()
@@ -285,6 +256,11 @@ public class CharSelManager : MonoBehaviour
             ClassButtons[j].Select(i == j);
 
         NameInput.ActivateInputField();
+    }
+
+    public void HairTab_Click()
+    {
+
     }
 
     public void SelectGender(int i)
