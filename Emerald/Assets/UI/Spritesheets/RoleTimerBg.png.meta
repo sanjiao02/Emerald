@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 7208178408897111988
     second: Equip_Sub_BG1
+  - first:
+      213: -8684610243342280280
+    second: RoleTimerBg_1
+  - first:
+      213: 2741724566551702306
+    second: RoleTimerBg_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -98,7 +104,7 @@ TextureImporter:
         width: 201
         height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -106,6 +112,48 @@ TextureImporter:
       bones: []
       spriteID: 4b7e3f38218980460800000000000000
       internalID: 7208178408897111988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoleTimerBg_1
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 186
+        width: 540
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a95dd82ff01a7780800000000000000
+      internalID: -8684610243342280280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoleTimerBg_2
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 203
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22ba64d87ff8c0620800000000000000
+      internalID: 2741724566551702306
       vertices: []
       indices: 
       edges: []
