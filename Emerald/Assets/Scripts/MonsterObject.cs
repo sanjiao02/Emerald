@@ -13,6 +13,11 @@ public class MonsterObject : MapObject
     public override void Start()
     {
         base.Start();
+
+        Model = gameObject;
+        ObjectRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        Parent = ObjectRenderer.transform.parent.gameObject;
+
         HealthBar = Instantiate(GameScene.RedHealthBar, NameLabel.transform).GetComponent<Renderer>();
         GetComponentInChildren<MonsterAnimationController>()?.SetParent(this);
 

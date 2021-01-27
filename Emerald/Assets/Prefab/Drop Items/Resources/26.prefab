@@ -97,7 +97,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: c56d5700c67342eab4163efcb23acbb9, type: 2}
-  - {fileID: 2100000, guid: 9df71da1882afd347bbeabb06d042f1b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,16 +130,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectRenderer: {fileID: 6803506383938272816}
+  OutlineMaterial: {fileID: 2100000, guid: 9df71da1882afd347bbeabb06d042f1b, type: 2}
   NameLabelObject: {fileID: 8972585348359723467, guid: 874b3b0ec8d710048b5ece3e20b407b0,
     type: 3}
   NameLocation: {fileID: 6020252868156133102}
+  HealthBar: {fileID: 0}
   NameLabel: {fileID: 0}
   Model: {fileID: 5068307763439602412}
+  Parent: {fileID: 0}
   MoveSpeed: 0
   OutlineWidth: 0.01
   Name: 
   Light: 0
-  Dead: 0
   Blocking: 1
   HealthTime: 0
   IsMoving: 0

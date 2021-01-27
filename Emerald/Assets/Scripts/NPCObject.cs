@@ -8,6 +8,15 @@ public class NPCObject : MapObject
 {
     public GameObject CameraLocation;
 
+    public override void Start()
+    {
+        base.Start();
+
+        Model = gameObject;
+        ObjectRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        Parent = ObjectRenderer.transform.parent.gameObject;
+    }
+
     public override void SetAction()
     {
         if (ActionFeed.Count == 0)

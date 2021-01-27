@@ -420,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectRenderer: {fileID: 0}
+  OutlineMaterial: {fileID: 2100000, guid: 9df71da1882afd347bbeabb06d042f1b, type: 2}
   NameLabelObject: {fileID: 8972585348359723467, guid: e35d53eb7d2d0c143a86037f33b2f579,
     type: 3}
   NameLocation: {fileID: 6531817618612059206}
@@ -431,7 +432,6 @@ MonoBehaviour:
   OutlineWidth: 0
   Name: 
   Light: 0
-  Dead: 0
   Blocking: 1
   HealthTime: 0
   IsMoving: 0

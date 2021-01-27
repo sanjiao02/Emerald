@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using Network = EmeraldNetwork.Network;
@@ -11,13 +13,35 @@ public class MapObject : MonoBehaviour
     {
         get { return GameManager.GameScene; }
     }
+    [HideInInspector]
     public Renderer ObjectRenderer;
+
+    private Material outlineMaterial;
+    public Material OutlineMaterial
+    {
+        get { return outlineMaterial; }
+        set
+        {
+            if (outlineMaterial == value) return;
+
+            var mats = ObjectRenderer.materials.ToList();
+            mats.Add(value);
+            ObjectRenderer.materials = mats.ToArray();
+            outlineMaterial = ObjectRenderer.materials[ObjectRenderer.materials.Length - 1];
+        }
+    }
+
+
+
     public GameObject NameLabelObject;
     public Transform NameLocation;
+    [HideInInspector]
     public Renderer HealthBar;
     [HideInInspector]
     public TMP_Text NameLabel;
+    [HideInInspector]
     public GameObject Model;
+    [HideInInspector]
     public GameObject Parent;
     [Range(0f, 10f)]
     public float MoveSpeed;
@@ -146,15 +170,15 @@ public class MapObject : MonoBehaviour
 
     public virtual void OnSelect()
     {
-        ObjectRenderer.materials[1].SetFloat("_ASEOutlineWidth", OutlineWidth);
-        ObjectRenderer.materials[1].SetColor("_ASEOutlineColor", Color.red);
+        outlineMaterial.SetFloat("_ASEOutlineWidth", OutlineWidth);
+        outlineMaterial.SetColor("_ASEOutlineColor", Color.red);
         NameLabel.gameObject.SetActive(true);
     }
 
     public virtual void OnDeSelect()
     {
-        ObjectRenderer.materials[1].SetFloat("_ASEOutlineWidth", 0);
-        ObjectRenderer.materials[1].SetColor("_ASEOutlineColor", Color.clear);
+        outlineMaterial.SetFloat("_ASEOutlineWidth", 0);
+        outlineMaterial.SetColor("_ASEOutlineColor", Color.clear);
         NameLabel.gameObject.SetActive(false);
     }
 

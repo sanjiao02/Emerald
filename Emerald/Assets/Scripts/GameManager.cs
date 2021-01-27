@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> NPCModels;
     public List<GameObject> GoldModels;
 
+    public Material OutlineMaterial;
+
     private static MirDirection MouseDirection;
     private static float MouseDistance;
 
@@ -241,6 +243,7 @@ public class GameManager : MonoBehaviour
             player.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
             player.Gender = p.Gender;
             player.Armour = p.Armour;
+            player.OutlineMaterial = OutlineMaterial;
             player.Weapon = p.Weapon;
             player.Dead = p.Dead;
             player.Blocking = !p.Dead;
@@ -260,6 +263,7 @@ public class GameManager : MonoBehaviour
         player.Direction = p.Direction;
         player.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);        
         player.Armour = p.Armour;
+        player.OutlineMaterial = OutlineMaterial;
         player.Weapon = p.Weapon;
         player.Dead =  p.Dead;
         player.Blocking = !p.Dead;
@@ -276,6 +280,7 @@ public class GameManager : MonoBehaviour
         {
             player = (PlayerObject)ob;
             player.Armour = p.Armour;
+            player.OutlineMaterial = OutlineMaterial;
             player.Weapon = p.Weapon;
         }
     }
@@ -318,6 +323,7 @@ public class GameManager : MonoBehaviour
         monster.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
         monster.Direction = p.Direction;
         monster.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
+        monster.OutlineMaterial = OutlineMaterial;
         monster.Dead = p.Dead;
         monster.Blocking = !p.Dead;
 
@@ -352,6 +358,7 @@ public class GameManager : MonoBehaviour
         npc.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
         npc.Direction = p.Direction;
         npc.Model.transform.rotation = ClientFunctions.GetRotation(p.Direction);
+        npc.OutlineMaterial = OutlineMaterial;
         CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(npc);
         ObjectList.Add(p.ObjectID, npc);
     }
@@ -373,6 +380,7 @@ public class GameManager : MonoBehaviour
         ItemObject gold = model.GetComponent<ItemObject>();
         gold.Name = string.Format("Gold ({0:###,###,###})", p.Gold);
         gold.ObjectID = p.ObjectID;
+        gold.OutlineMaterial = OutlineMaterial;
         CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(gold);
         ObjectList.Add(p.ObjectID, gold);
     }
@@ -385,6 +393,7 @@ public class GameManager : MonoBehaviour
         item.Name = p.Name;
         item.ObjectID = p.ObjectID;
         item.CurrentLocation = new Vector2Int(p.Location.X, p.Location.Y);
+        item.OutlineMaterial = OutlineMaterial;
 
         CurrentScene.Cells[p.Location.X, p.Location.Y].AddObject(item);
         ObjectList.Add(p.ObjectID, item);
