@@ -34,7 +34,6 @@ namespace Server
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SMain));
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.LogTextBox = new System.Windows.Forms.TextBox();
@@ -57,6 +56,9 @@ namespace Server
             this.stopServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rebootServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.reloadNPCsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadDropsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.closeServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseFormsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,15 +87,12 @@ namespace Server
             this.respawnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.monsterTunerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InterfaceTimer = new System.Windows.Forms.Timer(this.components);
-            this.reloadNPCsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reloadDropsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PlayersOnlineListView = new Server.ListViewNF();
             this.indexHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.levelHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.classHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.genderHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MainTabs.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -111,66 +110,76 @@ namespace Server
             this.MainTabs.Controls.Add(this.tabPage3);
             this.MainTabs.Controls.Add(this.tabPage4);
             this.MainTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainTabs.Location = new System.Drawing.Point(0, 25);
+            this.MainTabs.Location = new System.Drawing.Point(0, 27);
+            this.MainTabs.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MainTabs.Name = "MainTabs";
             this.MainTabs.SelectedIndex = 0;
-            this.MainTabs.Size = new System.Drawing.Size(485, 313);
+            this.MainTabs.Size = new System.Drawing.Size(566, 463);
             this.MainTabs.TabIndex = 5;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.LogTextBox);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(477, 287);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage1.Size = new System.Drawing.Size(558, 433);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Logs";
+            this.tabPage1.Text = "日志";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // LogTextBox
             // 
+            this.LogTextBox.BackColor = System.Drawing.Color.Black;
             this.LogTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LogTextBox.Location = new System.Drawing.Point(3, 3);
+            this.LogTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.LogTextBox.Location = new System.Drawing.Point(3, 4);
+            this.LogTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LogTextBox.Multiline = true;
             this.LogTextBox.Name = "LogTextBox";
             this.LogTextBox.ReadOnly = true;
             this.LogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.LogTextBox.Size = new System.Drawing.Size(471, 281);
+            this.LogTextBox.Size = new System.Drawing.Size(552, 425);
             this.LogTextBox.TabIndex = 2;
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.DebugLogTextBox);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(477, 287);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage2.Size = new System.Drawing.Size(558, 433);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Debug Logs";
+            this.tabPage2.Text = "调试日志";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // DebugLogTextBox
             // 
+            this.DebugLogTextBox.BackColor = System.Drawing.Color.Black;
             this.DebugLogTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DebugLogTextBox.Location = new System.Drawing.Point(3, 3);
+            this.DebugLogTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.DebugLogTextBox.Location = new System.Drawing.Point(3, 4);
+            this.DebugLogTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DebugLogTextBox.Multiline = true;
             this.DebugLogTextBox.Name = "DebugLogTextBox";
             this.DebugLogTextBox.ReadOnly = true;
             this.DebugLogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DebugLogTextBox.Size = new System.Drawing.Size(471, 281);
+            this.DebugLogTextBox.Size = new System.Drawing.Size(552, 429);
             this.DebugLogTextBox.TabIndex = 3;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.ChatLogTextBox);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(477, 287);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage3.Size = new System.Drawing.Size(558, 433);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Chat Logs";
+            this.tabPage3.Text = "聊天日志";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -178,50 +187,58 @@ namespace Server
             this.groupBox1.Controls.Add(this.GlobalMessageButton);
             this.groupBox1.Controls.Add(this.GlobalMessageTextBox);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(3, 242);
+            this.groupBox1.Location = new System.Drawing.Point(3, 374);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(471, 42);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(552, 59);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Send Message";
+            this.groupBox1.Text = "发送消息";
             // 
             // GlobalMessageButton
             // 
-            this.GlobalMessageButton.Location = new System.Drawing.Point(392, 13);
+            this.GlobalMessageButton.Location = new System.Drawing.Point(457, 18);
+            this.GlobalMessageButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.GlobalMessageButton.Name = "GlobalMessageButton";
-            this.GlobalMessageButton.Size = new System.Drawing.Size(73, 22);
+            this.GlobalMessageButton.Size = new System.Drawing.Size(85, 31);
             this.GlobalMessageButton.TabIndex = 0;
-            this.GlobalMessageButton.Text = "Send";
+            this.GlobalMessageButton.Text = "发送";
             this.GlobalMessageButton.UseVisualStyleBackColor = true;
             this.GlobalMessageButton.Click += new System.EventHandler(this.GlobalMessageButton_Click);
             // 
             // GlobalMessageTextBox
             // 
-            this.GlobalMessageTextBox.Location = new System.Drawing.Point(6, 16);
+            this.GlobalMessageTextBox.Location = new System.Drawing.Point(7, 23);
+            this.GlobalMessageTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.GlobalMessageTextBox.Name = "GlobalMessageTextBox";
-            this.GlobalMessageTextBox.Size = new System.Drawing.Size(380, 21);
+            this.GlobalMessageTextBox.Size = new System.Drawing.Size(443, 23);
             this.GlobalMessageTextBox.TabIndex = 0;
             // 
             // ChatLogTextBox
             // 
-            this.ChatLogTextBox.Location = new System.Drawing.Point(3, 3);
+            this.ChatLogTextBox.BackColor = System.Drawing.Color.Black;
+            this.ChatLogTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.ChatLogTextBox.Location = new System.Drawing.Point(3, 4);
+            this.ChatLogTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ChatLogTextBox.Multiline = true;
             this.ChatLogTextBox.Name = "ChatLogTextBox";
             this.ChatLogTextBox.ReadOnly = true;
             this.ChatLogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ChatLogTextBox.Size = new System.Drawing.Size(471, 249);
+            this.ChatLogTextBox.Size = new System.Drawing.Size(549, 351);
             this.ChatLogTextBox.TabIndex = 4;
             // 
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage4.Controls.Add(this.PlayersOnlineListView);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(477, 287);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage4.Size = new System.Drawing.Size(558, 433);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Players Online";
+            this.tabPage4.Text = "在线玩家";
             // 
             // StatusBar
             // 
@@ -230,9 +247,10 @@ namespace Server
             this.MonsterLabel,
             this.ConnectionsLabel,
             this.CycleDelayLabel});
-            this.StatusBar.Location = new System.Drawing.Point(0, 338);
+            this.StatusBar.Location = new System.Drawing.Point(0, 490);
             this.StatusBar.Name = "StatusBar";
-            this.StatusBar.Size = new System.Drawing.Size(485, 26);
+            this.StatusBar.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.StatusBar.Size = new System.Drawing.Size(566, 26);
             this.StatusBar.SizingGrip = false;
             this.StatusBar.TabIndex = 4;
             this.StatusBar.Text = "statusStrip1";
@@ -282,7 +300,8 @@ namespace Server
             this.configToolStripMenuItem1});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(485, 25);
+            this.MainMenu.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.MainMenu.Size = new System.Drawing.Size(566, 27);
             this.MainMenu.TabIndex = 3;
             this.MainMenu.Text = "menuStrip1";
             // 
@@ -298,47 +317,66 @@ namespace Server
             this.toolStripSeparator1,
             this.closeServerToolStripMenuItem});
             this.controlToolStripMenuItem.Name = "controlToolStripMenuItem";
-            this.controlToolStripMenuItem.Size = new System.Drawing.Size(63, 21);
-            this.controlToolStripMenuItem.Text = "Control";
+            this.controlToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.controlToolStripMenuItem.Text = "控制";
             // 
             // startServerToolStripMenuItem
             // 
             this.startServerToolStripMenuItem.Name = "startServerToolStripMenuItem";
-            this.startServerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.startServerToolStripMenuItem.Text = "Start Server";
+            this.startServerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startServerToolStripMenuItem.Text = "开启服务器";
             this.startServerToolStripMenuItem.Click += new System.EventHandler(this.startServerToolStripMenuItem_Click);
             // 
             // stopServerToolStripMenuItem
             // 
             this.stopServerToolStripMenuItem.Name = "stopServerToolStripMenuItem";
-            this.stopServerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.stopServerToolStripMenuItem.Text = "Stop Server";
+            this.stopServerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stopServerToolStripMenuItem.Text = "停止服务器";
             this.stopServerToolStripMenuItem.Click += new System.EventHandler(this.stopServerToolStripMenuItem_Click);
             // 
             // rebootServerToolStripMenuItem
             // 
             this.rebootServerToolStripMenuItem.Name = "rebootServerToolStripMenuItem";
-            this.rebootServerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.rebootServerToolStripMenuItem.Text = "Reboot Server";
+            this.rebootServerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rebootServerToolStripMenuItem.Text = "重启服务器";
             this.rebootServerToolStripMenuItem.Click += new System.EventHandler(this.rebootServerToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(157, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // reloadNPCsToolStripMenuItem
+            // 
+            this.reloadNPCsToolStripMenuItem.Name = "reloadNPCsToolStripMenuItem";
+            this.reloadNPCsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reloadNPCsToolStripMenuItem.Text = "重载NPCs";
+            this.reloadNPCsToolStripMenuItem.Click += new System.EventHandler(this.reloadNPCsToolStripMenuItem_Click);
+            // 
+            // reloadDropsToolStripMenuItem
+            // 
+            this.reloadDropsToolStripMenuItem.Name = "reloadDropsToolStripMenuItem";
+            this.reloadDropsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reloadDropsToolStripMenuItem.Text = "重载掉落";
+            this.reloadDropsToolStripMenuItem.Click += new System.EventHandler(this.reloadDropsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // closeServerToolStripMenuItem
             // 
             this.closeServerToolStripMenuItem.Name = "closeServerToolStripMenuItem";
-            this.closeServerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.closeServerToolStripMenuItem.Text = "Close Server";
+            this.closeServerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeServerToolStripMenuItem.Text = "关闭";
             this.closeServerToolStripMenuItem.Click += new System.EventHandler(this.closeServerToolStripMenuItem_Click);
             // 
             // accountToolStripMenuItem
             // 
             this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
-            this.accountToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
-            this.accountToolStripMenuItem.Text = "Account";
+            this.accountToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.accountToolStripMenuItem.Text = "账户";
             this.accountToolStripMenuItem.Click += new System.EventHandler(this.accountToolStripMenuItem_Click);
             // 
             // databaseFormsToolStripMenuItem
@@ -352,56 +390,56 @@ namespace Server
             this.magicInfoToolStripMenuItem,
             this.gameshopToolStripMenuItem});
             this.databaseFormsToolStripMenuItem.Name = "databaseFormsToolStripMenuItem";
-            this.databaseFormsToolStripMenuItem.Size = new System.Drawing.Size(75, 21);
-            this.databaseFormsToolStripMenuItem.Text = "Database";
+            this.databaseFormsToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
+            this.databaseFormsToolStripMenuItem.Text = "数据库";
             // 
             // mapInfoToolStripMenuItem
             // 
             this.mapInfoToolStripMenuItem.Name = "mapInfoToolStripMenuItem";
-            this.mapInfoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.mapInfoToolStripMenuItem.Text = "Map";
+            this.mapInfoToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.mapInfoToolStripMenuItem.Text = "地图";
             this.mapInfoToolStripMenuItem.Click += new System.EventHandler(this.mapInfoToolStripMenuItem_Click);
             // 
             // itemInfoToolStripMenuItem
             // 
             this.itemInfoToolStripMenuItem.Name = "itemInfoToolStripMenuItem";
-            this.itemInfoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.itemInfoToolStripMenuItem.Text = "Item";
+            this.itemInfoToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.itemInfoToolStripMenuItem.Text = "物品";
             this.itemInfoToolStripMenuItem.Click += new System.EventHandler(this.itemInfoToolStripMenuItem_Click);
             // 
             // monsterInfoToolStripMenuItem
             // 
             this.monsterInfoToolStripMenuItem.Name = "monsterInfoToolStripMenuItem";
-            this.monsterInfoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.monsterInfoToolStripMenuItem.Text = "Monster";
+            this.monsterInfoToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.monsterInfoToolStripMenuItem.Text = "怪物";
             this.monsterInfoToolStripMenuItem.Click += new System.EventHandler(this.monsterInfoToolStripMenuItem_Click);
             // 
             // nPCInfoToolStripMenuItem
             // 
             this.nPCInfoToolStripMenuItem.Name = "nPCInfoToolStripMenuItem";
-            this.nPCInfoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.nPCInfoToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.nPCInfoToolStripMenuItem.Text = "NPC";
             this.nPCInfoToolStripMenuItem.Click += new System.EventHandler(this.nPCInfoToolStripMenuItem_Click);
             // 
             // questInfoToolStripMenuItem
             // 
             this.questInfoToolStripMenuItem.Name = "questInfoToolStripMenuItem";
-            this.questInfoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.questInfoToolStripMenuItem.Text = "Quest";
+            this.questInfoToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.questInfoToolStripMenuItem.Text = "任务";
             this.questInfoToolStripMenuItem.Click += new System.EventHandler(this.questInfoToolStripMenuItem_Click);
             // 
             // magicInfoToolStripMenuItem
             // 
             this.magicInfoToolStripMenuItem.Name = "magicInfoToolStripMenuItem";
-            this.magicInfoToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.magicInfoToolStripMenuItem.Text = "Magic";
+            this.magicInfoToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.magicInfoToolStripMenuItem.Text = "技能";
             this.magicInfoToolStripMenuItem.Click += new System.EventHandler(this.magicInfoToolStripMenuItem_Click);
             // 
             // gameshopToolStripMenuItem
             // 
             this.gameshopToolStripMenuItem.Name = "gameshopToolStripMenuItem";
-            this.gameshopToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
-            this.gameshopToolStripMenuItem.Text = "Gameshop";
+            this.gameshopToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.gameshopToolStripMenuItem.Text = "商城";
             this.gameshopToolStripMenuItem.Click += new System.EventHandler(this.gameshopToolStripMenuItem_Click);
             // 
             // configToolStripMenuItem1
@@ -412,21 +450,21 @@ namespace Server
             this.systemToolStripMenuItem,
             this.monsterTunerToolStripMenuItem});
             this.configToolStripMenuItem1.Name = "configToolStripMenuItem1";
-            this.configToolStripMenuItem1.Size = new System.Drawing.Size(58, 21);
-            this.configToolStripMenuItem1.Text = "Config";
+            this.configToolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
+            this.configToolStripMenuItem1.Text = "配置";
             // 
             // serverToolStripMenuItem
             // 
             this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.serverToolStripMenuItem.Text = "Server";
+            this.serverToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.serverToolStripMenuItem.Text = "服务器";
             this.serverToolStripMenuItem.Click += new System.EventHandler(this.serverToolStripMenuItem_Click);
             // 
             // balanceToolStripMenuItem
             // 
             this.balanceToolStripMenuItem.Name = "balanceToolStripMenuItem";
-            this.balanceToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.balanceToolStripMenuItem.Text = "Balance";
+            this.balanceToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.balanceToolStripMenuItem.Text = "平衡属性";
             this.balanceToolStripMenuItem.Click += new System.EventHandler(this.balanceToolStripMenuItem_Click);
             // 
             // systemToolStripMenuItem
@@ -445,8 +483,8 @@ namespace Server
             this.conquestToolStripMenuItem,
             this.respawnsToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.systemToolStripMenuItem.Text = "System";
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.systemToolStripMenuItem.Text = "系统";
             // 
             // dragonSystemToolStripMenuItem
             // 
@@ -535,28 +573,14 @@ namespace Server
             // monsterTunerToolStripMenuItem
             // 
             this.monsterTunerToolStripMenuItem.Name = "monsterTunerToolStripMenuItem";
-            this.monsterTunerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.monsterTunerToolStripMenuItem.Text = "Monster Tuner";
+            this.monsterTunerToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.monsterTunerToolStripMenuItem.Text = "怪物设置器";
             this.monsterTunerToolStripMenuItem.Click += new System.EventHandler(this.monsterTunerToolStripMenuItem_Click);
             // 
             // InterfaceTimer
             // 
             this.InterfaceTimer.Enabled = true;
             this.InterfaceTimer.Tick += new System.EventHandler(this.InterfaceTimer_Tick);
-            // 
-            // reloadNPCsToolStripMenuItem
-            // 
-            this.reloadNPCsToolStripMenuItem.Name = "reloadNPCsToolStripMenuItem";
-            this.reloadNPCsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.reloadNPCsToolStripMenuItem.Text = "Reload NPCs";
-            this.reloadNPCsToolStripMenuItem.Click += new System.EventHandler(this.reloadNPCsToolStripMenuItem_Click);
-            // 
-            // reloadDropsToolStripMenuItem
-            // 
-            this.reloadDropsToolStripMenuItem.Name = "reloadDropsToolStripMenuItem";
-            this.reloadDropsToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.reloadDropsToolStripMenuItem.Text = "Reload Drops";
-            this.reloadDropsToolStripMenuItem.Click += new System.EventHandler(this.reloadDropsToolStripMenuItem_Click);
             // 
             // PlayersOnlineListView
             // 
@@ -571,9 +595,11 @@ namespace Server
             this.PlayersOnlineListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PlayersOnlineListView.FullRowSelect = true;
             this.PlayersOnlineListView.GridLines = true;
-            this.PlayersOnlineListView.Location = new System.Drawing.Point(3, 3);
+            this.PlayersOnlineListView.HideSelection = false;
+            this.PlayersOnlineListView.Location = new System.Drawing.Point(3, 4);
+            this.PlayersOnlineListView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PlayersOnlineListView.Name = "PlayersOnlineListView";
-            this.PlayersOnlineListView.Size = new System.Drawing.Size(471, 281);
+            this.PlayersOnlineListView.Size = new System.Drawing.Size(552, 429);
             this.PlayersOnlineListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.PlayersOnlineListView.TabIndex = 0;
             this.PlayersOnlineListView.UseCompatibleStateImageBehavior = false;
@@ -583,48 +609,44 @@ namespace Server
             // 
             // indexHeader
             // 
-            this.indexHeader.Text = "Index";
+            this.indexHeader.Text = "序号";
             this.indexHeader.Width = 71;
             // 
             // nameHeader
             // 
-            this.nameHeader.Text = "Name";
+            this.nameHeader.Text = "名字";
             this.nameHeader.Width = 93;
             // 
             // levelHeader
             // 
-            this.levelHeader.Text = "Level";
+            this.levelHeader.Text = "等级";
             this.levelHeader.Width = 90;
             // 
             // classHeader
             // 
-            this.classHeader.Text = "Class";
+            this.classHeader.Text = "职业";
             this.classHeader.Width = 100;
             // 
             // genderHeader
             // 
-            this.genderHeader.Text = "Gender";
+            this.genderHeader.Text = "性别";
             this.genderHeader.Width = 98;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(157, 6);
             // 
             // SMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(485, 364);
+            this.ClientSize = new System.Drawing.Size(566, 516);
             this.Controls.Add(this.MainTabs);
             this.Controls.Add(this.StatusBar);
             this.Controls.Add(this.MainMenu);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "SMain";
-            this.Text = "Legend of Mir Server";
+            this.Text = "传奇永恒服务器";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SMain_FormClosing);
             this.Load += new System.EventHandler(this.SMain_Load);
             this.MainTabs.ResumeLayout(false);
